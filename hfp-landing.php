@@ -91,7 +91,7 @@
      </head>
     <body>
 
-    <nav class="navbar">
+    <!--<nav class="navbar">
         <ul class="list">
             <li><a href="#">About</a></li>
             <li><a href="#">Projects</a></li>
@@ -100,8 +100,7 @@
         </ul>
         <button class="search">Search</button>
         <button class="menu">Menu</button>
-    </nav>
-
+    </nav>-->
 
 
     <div class = "landing-page">
