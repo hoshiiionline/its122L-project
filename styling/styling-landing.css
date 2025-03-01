@@ -131,7 +131,7 @@ nav.is-hidden {
     font-weight: 700;
     margin: 0;
     color:#ffffff;
-    text-shadow: 2px 2px 6px #272727;
+    
 }
 
 .landing-subheading {
@@ -140,8 +140,29 @@ nav.is-hidden {
     margin: 20px 0;
     color:#ffffff;
     text-shadow: 2px 2px 6px #272727;
+
+
 }
 
+#grad1 {
+  background: -webkit-linear-gradient(right,#eeeeee, #f0e7b3, #fdc01a); /* For Safari 5.1 to 6.0 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-mask-image: linear-gradient(-75deg, rgb(255, 255, 255) 30%, #fafafa77 50%, rgb(255, 255, 255) 70%);
+  -webkit-mask-size: 200%;
+  animation: shine 3s infinite;
+}
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+  
+  to {
+    -webkit-mask-position: -50%;
+  }
+}
 /*--------------------------------Register Section-------------------------------------*/
 .register-container {
     height: 100vh;
@@ -175,6 +196,53 @@ nav.is-hidden {
 }
 
 
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color:  #1a1a1a;
+  ;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0.5rem 0 0.2rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+}
+
+input[type="text"], input[type="password"] {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input[type="submit"] {
+  background: #4A90E2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background: #357ABD;
+}
+
 .right-side{
     width: 25%;
     height:250px;
@@ -203,7 +271,12 @@ nav.is-hidden {
     justify-content: center;
     align-items: center;
     text-align: center;
-
+    padding:100px;
+    padding-right:200px;
+    padding-left:200px;
+    margin-bottom:-100px;
+    margin-left:70px;
+    margin-right:70px;
     background-color:(255, 255, 255, 0.87) ;
 }
 .carousel-container {
@@ -225,11 +298,11 @@ nav.is-hidden {
 }
 
 .carousel-subheading{
-    font-size: 30px;
+    font-size: 24px;
     margin-top:50px;
     font-weight: 300;
     color:#242424;
-    text-shadow: 2px 2px 6px #272727;
+    font-family:"Figtree", serif;
 }
 
 .slider {
@@ -266,6 +339,7 @@ nav.is-hidden {
 
 
 
+
 /* Rotate the entire carousel */
 @keyframes rotate {
     0%
@@ -281,4 +355,76 @@ nav.is-hidden {
 /* Hover effect for images */
 .slider span:hover img {
     transform: translateY(-50px) scale(1.1); /* Slight lift and zoom on hover */
+}
+
+
+/*--------------------------------About Us Section-------------------------------------*/
+
+.about-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(253, 236, 158, 0.062), #ffffff), 
+                url("../resources/bg1.jpg") no-repeat center center / cover;
+  
+}
+
+.left-side-about{
+  width: 30%;
+  height:500px;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: left;
+  background-color: rgba(0, 0, 0, 0.5);
+  max-height: 500px;
+  max-width: 50%;
+  text-align: justify;
+  
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.right-side-about{
+  width: 30%;
+  height:500px;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  max-height: 500px;
+  max-width: 50%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.about-heading{
+  font-size: 70px;
+  font-family: Figtree, serif;
+  font-weight:700;
+  margin: 0;
+  color:#161616;
+
+}
+
+.about-text{
+  font-size: 24px;
+  font-family: Figtree, serif;
+  font-weight:200;
+  margin: 0;
+  color:#161616;
 }
