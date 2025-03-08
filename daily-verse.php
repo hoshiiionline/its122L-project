@@ -13,7 +13,7 @@
     <div class="subheader">
       <div class="container flex">
         <div class="subheadings">
-          <h2>Verse of the Day:</h2>
+          <!--<h2>Verse of the Day:</h2>-->
           <h3 id="viewing"><span id="verse"></span></h3>
         </div>
       </div>

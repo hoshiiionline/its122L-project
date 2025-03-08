@@ -40,7 +40,7 @@
 
         <div class = "dailyverse">
             <h1>BIble Verse of the Day</h1>
-            <h2>This is where the bible verse of the day will go.</h2> <!--This heading will contain the retrieval of Bible Verse-->
+            <h2><?php include 'daily-verse.php'?></h2> <!--This heading will contain the retrieval of Bible Verse-->
             <p>Additional text will come go here.</p>
         </div>
 
