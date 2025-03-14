@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $filename = "../markdown-blog/posts/" . date("Y-m-d") . "-{$slug}.md";
 
         // Markdown file format
-        $markdownContent = "# {$title}\n";
+        $markdownContent = "# {$title}\n\n";
         $markdownContent .= $content;
 
         // Save the file

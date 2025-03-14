@@ -16,7 +16,7 @@ $posts = getPostsList();
 foreach ($posts as $post) {
     $title = $post["title"];
     $link = getExternalURL($post['slug']);
-    $description = strip_tags(renderMarkdown(getFirstLines($post['markdown'], 4, 1)));
+    $description = strip_tags(renderMarkdown(getFirstWords($post['markdown'], 50, 1)));
 
     echo "<item>
    <title>$title</title>

@@ -3,7 +3,7 @@
 
     $posts = getPostsList();
     foreach ($posts as $post) {
-        $titleAndSummary = getFirstLines($post['markdown'], 3);
+        $titleAndSummary = getFirstWords($post['markdown'], 50);
         $titleAndSummary = addTitleHref($titleAndSummary, $post['slug']);
 ?>
     <div class="blog-post">

@@ -30,8 +30,35 @@
     }
 
     function getFirstLines($string, $count, $skip = 0) {
-        $lines = array_slice(explode(PHP_EOL, $string), $skip, $count);
+        $exp = explode(PHP_EOL, $string);
+        //echo '<script>console.log(' . json_encode($exp) . ');</script>';
+        $lines = array_slice($exp, $skip, $count);
+        //echo '<script>console.log(' . json_encode($lines) . ');</script>';
         return implode(PHP_EOL, $lines);
+    }
+
+    function getFirstWords($string, $count, $skip = 0) {
+        $lines = preg_split('/\R\R+/', trim($string));
+        
+        if (empty($lines)) {
+            return '';
+        }
+    
+        $title = array_shift($lines);
+    
+        $content = implode(' ', $lines);
+
+        $words = preg_split('/\s+/u', trim($content));
+    
+        if (count($words) <= $skip) {
+            return $title;
+        }
+    
+        $limitedWords = array_slice($words, $skip, $count);
+    
+        $ellipsis = count($words) > ($skip + $count) ? "..." : "";
+    
+        return $title . PHP_EOL . implode(' ', $limitedWords) . $ellipsis;
     }
 
     function getExternalURL($slug) {
