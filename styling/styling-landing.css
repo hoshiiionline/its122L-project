@@ -9,6 +9,151 @@ body{
     flex-direction: column;
 }
 
+/* Unified glass-morphism effect */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Landing page refinements */
+.video-overlay {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.5)
+    ),
+    linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        transparent 100%
+    );
+}
+
+.landing-heading {
+    font-family: 'Oranienbaum', serif;
+    letter-spacing: 0.02em;
+}
+
+/* Enhanced gradient effect */
+#grad1 {
+    background: linear-gradient(
+        to right,
+        #ffffff 0%,
+        var(--primary-color) 50%,
+        #ffffff 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Carousel section modernization */
+.carousel-section {
+    padding: 50px 10%;
+    margin-bottom:-200px;
+    background-color: #ffffff;
+}
+
+.carousel-heading {
+    color: var(--primary-color);
+    font-family: 'Oranienbaum', serif;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-subheading {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* About section enhancement */
+.about-container {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.2)
+    ),
+    url("../resources/bg1.jpg") no-repeat center center / cover;
+}
+
+.left-side-about,
+.right-side-about {
+    background: rgba(255, 255, 255, 0.95);
+    transition: var(--transition);
+}
+
+.about-heading {
+    font-family: 'Oranienbaum', serif;
+    color: var(--text-dark);
+    text-transform: capitalize;
+}
+
+/* Registration section modernization */
+.register-container {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.6)
+    ),
+    url("../resources/bg2.jpg") no-repeat center center / cover;
+}
+
+.left-side,
+.right-side {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.tablinks {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    color: #666;
+}
+
+.tablinks.active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+input[type="submit"] {
+    background: var(--primary-color);
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+input[type="submit"]:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 180, 46, 0.3);
+}
+
+/* Unified hover effects */
+.glass-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Typography consistency */
+h1, h2, h3 {
+    font-family: 'Oranienbaum', serif;
+}
+
+p, input, button {
+    font-family: 'Figtree', sans-serif;
+}
+
+/* Form elements consistency */
+.form-control {
+    border: 1px solid #e0e0e0;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 201, 54, 0.1);
+}
 
 nav{
   position: fixed;
@@ -96,73 +241,158 @@ nav.is-hidden {
   }
 /*--------------------------------Landing Page-------------------------------------*/
 
-.landing-page{
+.landing-page {
     height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     min-height: 100vh;
-    /*background: linear-gradient(to bottom, rgba(253, 236, 158, 0.062), #ffffff), 
-                url("../resources/bg1.jpg") no-repeat center center / cover;*/
-    
+    position: relative;
+    overflow: hidden;
 }
 
-.back-video{
-    position:absolute;
-    right:0;
-    bottom:0;
-    z-index:-1;
-    -webkit-backdrop-filter: blur(8px) brightness(1.2);
-    /*-webkit-filter: blur(1px);
-    filter: blur(1px);*/
-    background: rgba(0, 0, 0, 0.178);
-
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.5)
+    );
+    z-index: 1;
 }
 
-.landing-content {
-    background: rgba(255, 255, 255, 0.87);
-    padding: 20px 40px;
-    border-radius: 12px;
+.back-video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .landing-heading {
-    font-size: 130px;
-    font-weight: 700;
+    font-size: clamp(80px, 15vw, 180px);
+    font-weight: 800;
     margin: 0;
-    color:#ffffff;
-    
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 .landing-subheading {
-    font-size: 30px;
+    font-size: clamp(18px, 3vw, 30px);
     font-weight: 300;
-    margin: 20px 0;
-    color:#ffffff;
-    text-shadow: 2px 2px 6px #272727;
-
-
+    margin: 20px auto;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    max-width: 800px;
+    padding: 0 20px;
 }
 
+/* Enhanced gradient and shine effect */
 #grad1 {
-  background: -webkit-linear-gradient(right,#eeeeee, #f0e7b3, #fdc01a); /* For Safari 5.1 to 6.0 */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  -webkit-mask-image: linear-gradient(-75deg, rgb(255, 255, 255) 30%, #fafafa77 50%, rgb(255, 255, 255) 70%);
-  -webkit-mask-size: 200%;
-  animation: shine 3s infinite;
+    background: -webkit-linear-gradient(right, 
+        #ffffff, 
+        #fff9e6,
+        #ffd700
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+        0 2px 10px rgba(255, 215, 0, 0.3),
+        0 4px 20px rgba(255, 255, 255, 0.2);
+    
+    /* Shine animation settings */
+    -webkit-mask-image: linear-gradient(
+        -75deg,
+        rgba(255, 255, 255, .9) 30%,
+        rgba(255, 255, 255, .7) 50%,
+        rgba(255, 255, 255, .9) 70%
+    );
+    -webkit-mask-size: 200%;
+    animation: shine 3s infinite;
 }
 
 @-webkit-keyframes shine {
-  from {
-    -webkit-mask-position: 150%;
-  }
-  
-  to {
-    -webkit-mask-position: -50%;
-  }
+    from {
+        -webkit-mask-position: 150%;
+    }
+    to {
+        -webkit-mask-position: -50%;
+    }
 }
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+    .content {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .landing-page {
+        height: 100svh; /* Use small viewport height for mobile */
+    }
+    
+    .content {
+        padding: 10px;
+    }
+    .landing-heading {
+        font-size: clamp(60px, 12vw, 120px);
+        letter-spacing: 1px;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .landing-page {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .landing-heading {
+        font-size: clamp(40px, 8vw, 90px);
+    }
+    
+    .landing-subheading {
+        font-size: clamp(16px, 2.5vw, 24px);
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 380px) {
+    .landing-heading {
+        font-size: clamp(40px, 8vw, 60px);
+    }
+    
+    .landing-subheading {
+        font-size: clamp(16px, 2.5vw, 20px);
+        margin: 15px auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .landing-heading {
+        font-size: clamp(50px, 10vw, 90px);
+    }
+}
+
 /*--------------------------------Register Section-------------------------------------*/
 .register-container {
     height: 100vh;
@@ -236,6 +466,7 @@ nav.is-hidden {
     font-size: 14px;
     transition: all 0.3s ease;
     background: #f8f9fa;
+    font-family:'Lexend Giga', sans-serif;
 }
 
 .form-control:focus {
@@ -364,7 +595,7 @@ input[type="submit"]:hover {
     font-weight: 700;
     margin: 0;
     color:#ffc936;
-    text-shadow: 2px 2px 6px #272727;   
+    text-shadow: 2px 2px 3px #272727;   
     margin-bottom: -80px;
 }
 
@@ -431,71 +662,110 @@ input[type="submit"]:hover {
 
 /*--------------------------------About Us Section-------------------------------------*/
 
-.about-container{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, rgba(253, 236, 158, 0.062), #ffffff), 
+.about-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px;
+    background: linear-gradient(to bottom, rgba(253, 236, 158, 0.062), #ffffff), 
                 url("../resources/bg1.jpg") no-repeat center center / cover;
-  
+    gap: 60px;
 }
 
-.left-side-about{
-  width: 30%;
-  height:500px;
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: left;
-  background-color: rgba(0, 0, 0, 0.5);
-  max-height: 500px;
-  max-width: 50%;
-  text-align: justify;
-  
-  background: rgba(255, 255, 255, 0.24);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.left-side-about {
+    width: 45%;
+    height: auto;
+    min-height: 600px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
 }
 
-
-.right-side-about{
-  width: 30%;
-  height:500px;
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  max-height: 500px;
-  max-width: 50%;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.24);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.right-side-about {
+    width: 45%;
+    height: auto;
+    min-height: 600px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
 }
 
-.about-heading{
-  font-size: 70px;
-  font-family: Figtree, serif;
-  font-weight:700;
-  margin: 0;
-  color:#161616;
-
+.right-side-about iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    border-radius: 10px;
 }
 
-.about-text{
-  font-size: 24px;
-  font-family: Figtree, serif;
-  font-weight:200;
-  margin: 0;
-  color:#161616;
+.about-heading {
+    font-size: 80px;
+    font-family: Figtree, serif;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #161616;
+}
+
+.about-text {
+    font-size: 24px;
+    font-family: Figtree, serif;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: #161616;
+    line-height: 1.6;
+}
+
+/* Responsive design for about section */
+@media (max-width: 1200px) {
+    .about-container {
+        padding: 40px;
+        gap: 30px;
+    }
+    
+    .about-heading {
+        font-size: 60px;
+    }
+    
+    .about-text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .left-side-about,
+    .right-side-about {
+        width: 100%;
+        min-height: auto;
+        padding: 30px;
+    }
+    
+    .about-heading {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    
+    .about-text {
+        font-size: 18px;
+    }
 }

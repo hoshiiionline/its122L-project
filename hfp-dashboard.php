@@ -31,9 +31,10 @@
 
         <nav class="navbar">
             <ul class="list">
-                <li><a href="hfp-landing.php">Home</a></li>
-                <li><a href="#">Reservation</a></li>
-                <li><a href="#">Newsletter</a></li>
+                
+                <li><a href="#"><i class="fa-solid fa-clipboard-list"></i> Reservation</a></li>
+                <li><a href="#"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
+                <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
              
             
@@ -48,19 +49,19 @@
         <div class ="news">
 
 
-            <a href="salon-amenities.php" style = "text-decoration: none">
+            <a href="#" style = "text-decoration: none">
                 <div class="news-left">
                     Blog 1
                 </div>
             </a>
 
-            <a href="salon-stylists.php" style = "text-decoration: none">
+            <a href="#" style = "text-decoration: none">
                 <div class="news-center" >
                     Blog 2
                 </div>
             </a>
 
-            <a href="salon-services.php" style = "text-decoration: none">
+            <a href="#" style = "text-decoration: none">
                 <div class="news-right">
                     Blog 3
                 </div>
