@@ -6,7 +6,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     header("Access-Control-Allow-Headers: Content-Type");
 }
 
-include "../config/config-calendar.php";
+include "../config/config.php";
 
 
 $stmt = $conn->prepare("

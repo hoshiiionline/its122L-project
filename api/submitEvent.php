@@ -7,7 +7,7 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 }
 
 
-include "config/config-calendar.php";
+include "config/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = $_POST ?: json_decode(file_get_contents("php://input"), true);
