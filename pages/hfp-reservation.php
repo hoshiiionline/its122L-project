@@ -1,5 +1,12 @@
 <?php
-require "api/submitEvent.php";
+require "../api/submitEvent.php";
+require "../config/config.php";
+
+$userID = $_SESSION['userID'];
+$sql = "SELECT * FROM users WHERE userID = '$userID'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +49,24 @@ require "api/submitEvent.php";
     <h2>Schedule an Event</h2>
     <form action="" method="POST">
         <label>Last Name:</label>
-        <input type="text" name="lastname" required>
-
+        <input type="text" name="lastname" placeholder="Doe" required>
+      
         <label>First Name:</label>
-        <input type="text" name="firstname" required>
+        <input type="text" name="firstname" placeholder="John" required>
 
         <label>Email:</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" placeholder="johndoe@example.com" required>
 
         <label>Contact Number:</label>
-        <input type="tel" name="contact_number" required>
+        <input type="tel" name="contact_number" placeholder="9123456789" required>
 
-        <label>Purpose:</label>
-        <input type="text" name="purpose" required>
+        <label for="purpose">Purpose</label>
+        <select name="purpose" id="cars" required>
+            <option value="default">Please select an event...</option>
+            <option value="Baptism">Baptism</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Others">Others</option>
+        </select>
 
         <label>Schedule Date:</label>
         <input type="date" name="schedule_date" id="schedule_date" readonly>

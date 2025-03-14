@@ -1,5 +1,5 @@
 <?php 
-    require 'config/config.php';
+    require '../config/config.php';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['form_type'])) { //register
@@ -28,7 +28,6 @@
                         if (mysqli_stmt_num_rows($stmt) > 0) {
                             $regis_err = "User with email already exists!";
                         } else {
-                            echo "SUCCESS!";
                             $sql = "INSERT INTO users (firstName, lastName, emailAddress, password) VALUES (?, ?, ?, ?)";
                             $stmt = mysqli_prepare($conn, $sql);
                             mysqli_stmt_bind_param($stmt, "ssss", $firstName, $lastName, $email, $hashed_password);
@@ -39,6 +38,17 @@
                                 $regis_err = "Error: " . mysqli_error($conn);
                             }
                             mysqli_stmt_close($stmt);
+
+                            $sql = "SELECT userID FROM users WHERE emailAddress = ?";
+                            $stmt = mysqli_prepare($conn, $sql);
+                            mysqli_stmt_bind_param($stmt, "s", $email);
+                            mysqli_stmt_execute($stmt);
+                            $result = mysqli_stmt_get_result($stmt);
+                            $row = mysqli_fetch_assoc($result);
+                            $userID = $row['userID'];
+                            $_SESSION['userID'] = $userID;  
+                            mysqli_stmt_close($stmt);
+                            header('Location: hfp-dashboard.php');
                         }        
                     }
                 }
@@ -90,7 +100,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Holy Family Parish</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="styling/styling-landing.css" rel="stylesheet" type="text/css">
+        <link href="../styling/styling-landing.css" rel="stylesheet" type="text/css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bentham&family=Figtree:ital,wght@0,300..900;1,300..900&family=Fjalla+One&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Giga:wght@100..900&family=Oranienbaum&display=swap" rel="stylesheet">
@@ -115,7 +125,7 @@
     <div class="landing-page">
         <div class="video-overlay"></div>
         <video autoplay muted loop playsinline class="back-video" >
-            <source src="resources/vtour2.mp4" type="video/mp4">
+            <source src="../resources/vtour2.mp4" type="video/mp4">
         </video>
         <div class="content">
             <h1 class="landing-heading" id="grad1" data-aos="fade-up" data-aos-delay="100">Holy Family Parish</h1>
@@ -137,11 +147,11 @@
     <div class="carousel-container" data-aos="fade-up" data-aos-delay="700">
             <div class="slider" >
         
-                <span style="--i:1;"><img src="resources/gallery1.jpg" alt=""></span>
-                <span style="--i:2;"><img src="resources/gallery2.jpg" alt=""></span>
-                <span style="--i:3;"><img src="resources/gallery3.jpg" alt=""></span>
-                <span style="--i:4;"><img src="resources/gallery4.jpg" alt=""></span>
-                <span style="--i:5;"><img src="resources/gallery5.jpg" alt=""></span>
+                <span style="--i:1;"><img src="../resources/gallery1.jpg" alt=""></span>
+                <span style="--i:2;"><img src="../resources/gallery2.jpg" alt=""></span>
+                <span style="--i:3;"><img src="../resources/gallery3.jpg" alt=""></span>
+                <span style="--i:4;"><img src="../resources/gallery4.jpg" alt=""></span>
+                <span style="--i:5;"><img src="../resources/gallery5.jpg" alt=""></span>
             </div>
         </div>
 

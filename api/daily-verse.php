@@ -22,6 +22,6 @@
       <div id="verse-content" class="verse-container"></div>
     </main>
     <script src="http://cdn.scripture.api.bible/fums/fumsv2.min.js"></script>
-    <script src="api/daily-verse-api.js"></script>
+    <script src="daily-verse-api.js"></script>
   </body>
 </html>
