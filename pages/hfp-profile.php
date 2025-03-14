@@ -64,106 +64,105 @@ $row = mysqli_fetch_assoc($result);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Profile</title>
-  <link rel="stylesheet" href="../styling/styling-landing.css">
-  <link rel="stylesheet" href="../styling/styling-dashboard.css">
-  <link rel="stylesheet" href="../styling/styling-profile.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bentham&family=Figtree:ital,wght@0,300..900;1,300..900&family=Oranienbaum&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Holy Family Parish</title>
+    <link href="../styling/styling-profile.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=Oranienbaum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="background1">
-  <nav class="navbar">
-      <ul class="list">
-      <li><a href="hfp-dashboard.php"><i class="fa-solid fa-house"></i></i> Dashboard</a></li>
-      <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i> Reservation</a></li>
-          <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
-          <li><a href="#"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
-          <li><a href="hfp-landing.php"><i class="fa-solid fa-door-open"></i> Exit</a></li>
-      </ul>
-  </nav>
-  <br><br>
-  <div class="container">
-    <?php if ($error) {
-        echo "<p class='error'>$error</p>";
-    }
-    $error = "";
-    ?>
-    <?php if ($success) { echo "<p class='success'>$success</p>"; }
-    $success = "";
-    ?>
-    <h3>My Profile</h3>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="firstName">First name</label>
-          <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $row['firstName'];?>" required>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="lastName">Last name</label>
-          <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $row['lastName'];?>" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['emailAddress'];?>" required>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="mobileNumber">Mobile number:</label>
-          <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" value="<?php echo $row['mobileNumber'];?>" required>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label>Password</label>
-        <!-- Button triggers the password change modal -->
-        <button type="button" class="btn btn-primary" id="changePasswordBtn">Change Password</button>
-      </div>
-      <!-- Other profile fields and update button here -->
-      <input type="hidden" name="form_type" value="register">
-      <input type="submit" class="btn btn-success" value="Update Profile">
-    </form>
-  </div>
-
-  <!-- Modal for Changing Password -->
-  <div id="passwordModal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close" id="closeModal">&times;</span>
-      <h2>Change Password</h2>
-      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-        <!-- Hidden input to indicate this is a password change request -->
-        <input type="hidden" name="action" value="change_password">
-        <label for="current_password">Current Password:</label>
-        <input type="password" name="current_password" required>
-        <label for="new_password">New Password:</label>
-        <input type="password" name="new_password" required>
-        <label for="confirm_password">Confirm New Password:</label>
-        <input type="password" name="confirm_password" required>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+<body>
+    <nav class="navbar">
+        <ul class="list">
+            <li><a href="hfp-dashboard.php"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i> Reservation</a></li>
+            <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
+           
+            <li><a href="hfp-landing.php"><i class="fa-solid fa-door-open"></i> Exit</a></li>
+        </ul>
+    </nav>
+    <br><br>
+    <div class="container">
+        <?php if ($error) {
+            echo "<p class='error'>$error</p>";
+        }
+        $error = "";
+        ?>
+        <?php if ($success) { echo "<p class='success'>$success</p>"; }
+        $success = "";
+        ?>
+        <h3>My Profile</h3>
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $row['firstName'];?>" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $row['lastName'];?>" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['emailAddress'];?>" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="mobileNumber">Mobile number:</label>
+                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" value="<?php echo $row['mobileNumber'];?>" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <!-- Button triggers the password change modal -->
+                <button type="button" class="btn btn-primary" id="changePasswordBtn">Change Password</button>
+            </div>
+            <!-- Other profile fields and update button here -->
+            <input type="hidden" name="form_type" value="register">
+            <input type="submit" class="btn btn-success" value="Update Profile">
+        </form>
     </div>
-  </div>
 
-  <script>
-    // Show the password change modal
-    var modal = document.getElementById("passwordModal");
-    var btn = document.getElementById("changePasswordBtn");
-    var closeBtn = document.getElementById("closeModal");
+    <!-- Modal for Changing Password -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <h2>Change Password</h2>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                <!-- Hidden input to indicate this is a password change request -->
+                <input type="hidden" name="action" value="change_password">
+                <label for="current_password">Current Password:</label>
+                <input type="password" name="current_password" required>
+                <label for="new_password">New Password:</label>
+                <input type="password" name="new_password" required>
+                <label for="confirm_password">Confirm New Password:</label>
+                <input type="password" name="confirm_password" required>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-    closeBtn.onclick = function() {
-      modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
+    <script>
+        // Show the password change modal
+        var modal = document.getElementById("passwordModal");
+        var btn = document.getElementById("changePasswordBtn");
+        var closeBtn = document.getElementById("closeModal");
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

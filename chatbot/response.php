@@ -1,15 +1,23 @@
-<?php 
+<?php
+header('Content-Type: application/json');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 require "../vendor/autoload.php";
 
 use GeminiAPI\Client;
 use GeminiAPI\Resources\Parts\TextPart;
 
-$data = json_decode(file_get_contents("php://input"));
+try {
+    $data = json_decode(file_get_contents("php://input"));
+    
+    if (!$data || !isset($data->text)) {
+        throw new Exception("No input text provided");
+    }
 
-// Add context to the prompt
-$trainingData = file_get_contents("../resources/trainingData.txt");
-$context = "You are an AI chatbot for Holy Family Parish, a welcoming church community dedicated to faith, service, and fellowship. Speak in a friendly and uplifting manner, using language inspired by the Psalms—gentle, poetic, and filled with warmth and grace. Your responses should comfort, inspire, and guide users in a manner befitting a trusted spiritual companion.
+    // Add context to the prompt
+    $trainingData = file_get_contents("../resources/trainingData.txt");
+    $context = "You are an AI chatbot for Holy Family Parish, a welcoming church community dedicated to faith, service, and fellowship. Speak in a friendly and uplifting manner, using language inspired by the Psalms—gentle, poetic, and filled with warmth and grace. Your responses should comfort, inspire, and guide users in a manner befitting a trusted spiritual companion.
 
 Here's some additional information.
 - Location: 233 CM Recto Street, Brgy. Parang, Marikina City, Philippines, 1809
@@ -25,17 +33,25 @@ Please provide helpful, friendly responses about our services, booking, hours, o
 
 User question: ";
 
-$text = $context . $data->text;
+    $text = $context . $data->text;
 
-$client = new Client("AIzaSyCU4G6l49sOAqX3UO7_NN60eTj7eLQ2Vxc"); //Gemini API key
+    $client = new Client("AIzaSyDm5zmW8c7BhuQzOVM7Gt5uFU_45wl5BXc");
 
-try {
     $response = $client->geminiPro15()->generateContent(
         new TextPart($text)
     );
 
-    echo $response->text();
+    echo json_encode([
+        'status' => 'success',
+        'message' => $response->text()
+    ]);
+
 } catch (Exception $e) {
-    echo "I apologize, but I encountered an error. Please try again.";
-    error_log("Gemini API Error: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode([
+        'status' => 'error',
+        'message' => "I apologize, but I encountered an error. Please try again.",
+        'debug' => $e->getMessage()
+    ]);
+    error_log("Chatbot Error: " . $e->getMessage());
 }

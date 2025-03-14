@@ -1,54 +1,282 @@
-form {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+:root {
+    --primary-color: #ffc936;
+    --primary-dark: #e6b42e;
+    --text-dark: #161616;
+    --text-light: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
+
+body {
+    font-family: 'Figtree', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+                url("../resources/bg2.jpg") no-repeat center center / cover;
+    background-attachment: fixed;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+}
+
+.list {
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    margin-left: 100px;
+}
+
+.list li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.list li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition);
+}
+
+.list li a:hover::after {
+    width: 100%;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 120px auto 40px;
+    padding: 40px;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.container h3 {
+    font-family: 'Oranienbaum', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.container h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: var(--transition);
+    font-family: 'Figtree', sans-serif;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 201, 54, 0.2);
+    outline: none;
+}
+
+label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-family: 'Figtree', sans-serif;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-family: 'Figtree', sans-serif;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    border: none;
+    color: var(--text-dark);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(230, 180, 46, 0.3);
+}
+
+.btn-success {
+    background: var(--primary-color);
+    border: none;
+    color: var(--text-dark);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-success:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(230, 180, 46, 0.3);
+}
+
 .success,
 .error {
-  text-align: center;
-  font-weight: bold;
+    text-align: center;
+    font-weight: 600;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: 'Figtree', sans-serif;
 }
+
 .success {
-  color: green;
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.2);
 }
+
 .error {
-  color: red;
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
 }
+
+/* Modal Styling */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
+
 .modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 300px;
-  position: relative;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: var(--glass-bg);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
+    position: relative;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--glass-border);
 }
+
+.modal-content h2 {
+    font-family: 'Oranienbaum', serif;
+    font-size: 28px;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
 .modal-close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-  font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--text-dark);
+    transition: var(--transition);
 }
-label {
-  font-weight: bold;
+
+.modal-close:hover {
+    color: var(--primary-dark);
 }
-input {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0 15px;
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 100px 20px 40px;
+        padding: 30px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 400px;
+        margin: 20% auto;
+    }
+
+    nav {
+        padding-left: 30px;
+    }
+    
+    .list {
+        gap: 25px;
+        padding: 0 20px;
+    }
+    
+    .list li a {
+        font-size: 16px;
+    }
 }
-button {
-  padding: 10px 15px;
-  font-size: 16px;
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    nav {
+        padding-left: 20px;
+    }
+    
+    .list {
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }

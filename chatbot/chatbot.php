@@ -1,3 +1,8 @@
+<?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 
 <?php 
 $psalm_uel_openings = array(
@@ -47,8 +52,10 @@ $psalm_uel_openings = array(
 
       <!-- Body with message bubble(s) -->
       <div class="chat-body">
-        <div class="message-bubble" id="response">
-          <?php echo $psalm_uel_openings[array_rand($psalm_uel_openings)];?>
+        <div id="response">
+            <div class="message-bubble bot-message">
+                <?php echo $psalm_uel_openings[array_rand($psalm_uel_openings)];?>
+            </div>
         </div>
         <div class="typing">PSALMuel is composing...</div>
       </div>
@@ -96,6 +103,15 @@ $psalm_uel_openings = array(
       responseBox.textContent = 'You asked: ' + userText;
     }
   </script>
-  <script src="script.js"></script>
+  <script src="../chatbot/script.js"></script>
+
+  <!-- Add this before closing body tag -->
+  <script>
+  // Add error handling for script loading
+  window.onerror = function(msg, url, lineNo, columnNo, error) {
+      console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError: ' + error);
+      return false;
+  };
+  </script>
 </body>
 </html>

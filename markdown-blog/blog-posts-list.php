@@ -15,6 +15,7 @@
         <ul class="list">
             <li><a href="../pages/hfp-dashboard.php"><i class="fa-solid fa-house"></i> Dashboard</a></li>
             <li><a href="#"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
+            <li><a href="../pages/hfp-profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
             <li><a href="../pages/hfp-landing.php"><i class="fa-solid fa-door-open"></i> Exit</a></li>
         </ul>
     </nav>
