@@ -32,7 +32,7 @@
         <nav class="navbar">
             <ul class="list">
                 
-                <li><a href="#"><i class="fa-solid fa-clipboard-list"></i> Reservation</a></li>
+                <li><a href="sample-calendar-create.php"><i class="fa-solid fa-calendar-days"></i></i> Reservation</a></li>
                 <li><a href="#"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
                 <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
@@ -74,8 +74,9 @@
         </div>
 
         <div class ="calendar">
-            <h1>This is where the calendar will go.</h1>
-            <p>Additional text will go here</p>
+            <h1>Parish Calendar</h1>
+            <p>View all upcoming events, activities, and scheduled masses.</p>
+            <div><?php include 'sample-calendar-retrieval.php'?></div>
         </div>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>

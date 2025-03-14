@@ -75,8 +75,10 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0 120px;
+    padding: 0 40px;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
     background: linear-gradient(
         rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.5)
@@ -104,6 +106,7 @@ nav {
 #verse-content {
     position: relative;
     z-index: 2;
+    padding-left: 100px;
 }
 
 .dailyverse h1 {
@@ -113,6 +116,7 @@ nav {
     font-family: 'Oranienbaum', serif;
     letter-spacing: 1px;
     line-height: 1.2;
+    padding-left: 100px;
 }
 
 #verse {
@@ -121,6 +125,7 @@ nav {
     margin-bottom: 20px;
     font-style: italic;
     font-weight: 500;
+    padding-left: 100px;
 }
 
 #verse-content {
@@ -132,6 +137,8 @@ nav {
     padding: 30px;
     border-radius: 15px;
     border-left: 4px solid var(--primary-color);
+    
+    margin-left: 100px;
 }
 
 /* News Section */
@@ -141,8 +148,10 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    padding: 80px 40px;
+    padding: 80px 20px;
     background: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .news-left, 
@@ -186,15 +195,17 @@ nav {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Posts Section */
+
 .posts {
     min-height: 100vh;
-    padding: 80px 40px;
+    padding: 80px 20px;
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
                 url("../resources/bg1.jpg") no-repeat center center / cover;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .posts h1 {
@@ -207,21 +218,29 @@ nav {
 /* Calendar Section */
 .calendar {
     min-height: 100vh;
-    padding: 80px 40px;
+    padding: 40px 20px;
     background: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .calendar h1 {
     font-family: 'Oranienbaum', serif;
     font-size: clamp(36px, 6vw, 60px);
     color: var(--text-dark);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-/* Responsive Design */
+.calendar > div {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+
 @media (max-width: 1200px) {
     .news {
         flex-wrap: wrap;
@@ -286,5 +305,13 @@ nav {
     .list {
         gap: 20px;
     }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
