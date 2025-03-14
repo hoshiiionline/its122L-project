@@ -1,3 +1,7 @@
+<?php 
+require '../config/config.php';
+$isAdmin = $_SESSION['isAdmin'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +27,14 @@
     <div class="blog-container">
         <div class="blog-header">
             <h1 class="blog-heading">Parish Blog Posts</h1>
-            <a href="../pages/hfp-blogs.php" class="create-post-btn">
+            <?php 
+                if($isAdmin == 1) {
+                echo '            <a href="../pages/hfp-blogs.php" class="create-post-btn">
                 <i class="fa-solid fa-plus"></i> Create New Post
-            </a>
+            </a>';
+                }
+            ?>
+
         </div>
         <div class="blog-grid">
             <?php include 'postListRenderer.php'; ?>

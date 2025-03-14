@@ -10,6 +10,10 @@
 <!--  Latest Posts (Blog)  -->
 <!--  Church Calendar  -->  
 
+<?php
+require "../config/config.php";
+echo $_SESSION['isAdmin'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +32,6 @@
 
 
     <body>  
-
         <nav class="navbar">
             <ul class="list">
                 
