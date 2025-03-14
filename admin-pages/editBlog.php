@@ -16,7 +16,7 @@ $lines = explode("\n", $content);
 if (count($lines) > 1) {
     $title = array_shift($lines);
     $title = preg_replace('/^#\s*/', '', $title);
-    
+
     echo '<script>console.log(' . json_encode($title) . ');</script>';
     $content = implode("\n", $lines);
 }
