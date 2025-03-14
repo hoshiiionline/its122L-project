@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pending Events | Holy Family Parish</title>
-
+    <link href="../styling/styling-pending.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=Oranienbaum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
 <body class="background1">
 <div class="wrap">
@@ -121,11 +125,7 @@
       </div>
     </div>
 
-    <div class="col-lg-1 container right-container d-flex align-items-center justify-content-center" style="overflow: hidden;">
-      <a href="approvedBooking.php" class="btn">
-          <i class="fas fa-arrow-right fa-3x"></i>
-      </a>
-    </div>
+
 
   </div>
 </div>
@@ -133,3 +133,6 @@
 <?php
 echo '<script src="../admin-scripts/pendingEvents.js"></script>';
 ?>
+
+</body>
+</html>

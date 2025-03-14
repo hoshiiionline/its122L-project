@@ -58,7 +58,7 @@ function reloadBookings() {
         })
         .catch((error) => console.error("Error fetching bookings:", error));
 }
-/*
+
 function displayBookingDetails(data) {
     const detailsContainer = document.querySelector("#room-info tbody");
     const customerContainer = document.querySelector("#customer-info tbody");
@@ -144,7 +144,7 @@ function displayBookingDetails(data) {
     });
 }
 
-/*
+
 function resetInfo(){
     const detailsContainer = document.querySelector("#room-info tbody");
     const customerContainer = document.querySelector("#customer-info tbody");
@@ -228,6 +228,6 @@ function updateBookingStatus(bookingID, newStatus) {
     })
     .catch((error) => console.error("Error updating booking status:", error));
 }
-*/
+
 
 reloadEvents();
