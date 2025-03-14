@@ -1,3 +1,6 @@
+CREATE DATABASE hfp;
+USE hfp;
+
 CREATE TABLE `users` (
     `userID` INT(11) NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(50) NOT NULL,
