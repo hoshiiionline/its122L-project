@@ -17,12 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Save the file
         if (file_put_contents($filename, $markdownContent)) {
-            echo json_encode(["status" => "success", "message" => "✅ Post saved successfully!"]);
+            echo json_encode(["status" => "success", "message" => "Post saved successfully!"]);
         } else {
-            echo json_encode(["status" => "error", "message" => "❌ Error saving the post."]);
+            echo json_encode(["status" => "error", "message" => "Error saving the post."]);
         }
     } else {
-        echo json_encode(["status" => "error", "message" => "❌ Title and content are required."]);
+        echo json_encode(["status" => "error", "message" => "Title and content are required."]);
     }
 } else {
     echo json_encode(["status" => "error", "message" => "Invalid request method."]);
