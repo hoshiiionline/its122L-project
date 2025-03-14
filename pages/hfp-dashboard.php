@@ -34,6 +34,7 @@
                 
                 <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i></i> Reservation</a></li>
                 <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
+                <li><a href="hfp-profie.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
                 <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
              
