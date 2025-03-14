@@ -26,7 +26,7 @@ CREATE TABLE `reservation` (
 
 CREATE TABLE `wedding` (
     `weddingID` INT(11) NOT NULL AUTO_INCREMENT,
-    `reservationID` INT(11) NOT NULL,
+    `reservationID` INT(15) NOT NULL,
     `groomName` VARCHAR(50) NOT NULL,
     `brideName` VARCHAR(50) NOT NULL,
     `guestsNo` INT(11) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `wedding` (
 
 CREATE TABLE `baptism` (
     `baptismID` INT(11) NOT NULL AUTO_INCREMENT,
-    `reservationID` INT(11) NOT NULL,
+    `reservationID` INT(15) NOT NULL,
     `childName` VARCHAR(50) NOT NULL,
     `dateOfBirth` DATE NOT NULL,
     `motherName` VARCHAR(50) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `priest` (
 
 CREATE TABLE `assignment` (
     `assignmentID` INT(11) NOT NULL AUTO_INCREMENT,
-    `reservationID` INT(11) NOT NULL,
+    `reservationID` INT(15) NOT NULL,
     `priestID` INT(11) NOT NULL,
     PRIMARY KEY (`assignmentID`),
     CONSTRAINT `fk_assignment_reservation` FOREIGN KEY (`reservationID`) REFERENCES `reservation`(`reservationID`),

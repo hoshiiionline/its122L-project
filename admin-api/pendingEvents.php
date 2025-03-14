@@ -9,11 +9,35 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 include_once "../config/config.php";
 
 $stmt = $conn->prepare("
-    SELECT reservation.reservationID, reservation.requestedDate, users.firstName, users.lastName, wedding.weddingID, baptism.baptismID
+    SELECT 
+        reservation.reservationID, 
+        reservation.requestedDate, 
+        users.firstName, 
+        users.lastName, 
+        'Wedding' AS eventType, 
+        wedding.weddingID AS eventID, 
+        wedding.groomName, wedding.brideName, wedding.guestsNo, 
+        NULL AS childName, NULL AS dateOfBirth, NULL AS motherName, NULL AS fatherName, NULL AS godparentsNo
     FROM reservation
     INNER JOIN users ON reservation.userID = users.userID
-    LEFT JOIN wedding on reservation.reservationID = wedding.reservationID
-    LEFT JOIN baptism on reservation.reservationID = baptism.reservationID
+    INNER JOIN wedding ON reservation.reservationID = wedding.reservationID
+
+    UNION
+
+    SELECT 
+        reservation.reservationID, 
+        reservation.requestedDate, 
+        users.firstName, 
+        users.lastName, 
+        'Baptism' AS eventType, 
+        baptism.baptismID AS eventID, 
+        NULL AS groomName, NULL AS brideName, NULL AS guestsNo, 
+        baptism.childName, baptism.dateOfBirth, baptism.motherName, baptism.fatherName, baptism.godparentsNo
+    FROM reservation
+    INNER JOIN users ON reservation.userID = users.userID
+    INNER JOIN baptism ON reservation.reservationID = baptism.reservationID
+
+    ORDER BY 2 ASC;
 ");
 
 $stmt->execute();

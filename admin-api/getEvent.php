@@ -9,20 +9,39 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 include_once "../config/config.php";
 
 $reservationID = isset($_GET["reservationID"]) ? $_GET["reservationID"] : null;
+$type = isset($_GET["type"]) ? $_GET["type"] : null;
 
 if ($reservationID) {
-    $stmt = $conn->prepare("
-        SELECT reservation.reservationID, reservation.requestedDate, users.firstName, users.lastName, wedding.weddingID, baptism.baptismID
-        FROM reservation
-        INNER JOIN users ON reservation.userID = users.userID
-        LEFT JOIN wedding on reservation.reservationID = wedding.reservationID
-        LEFT JOIN baptism on reservation.reservationID = baptism.reservationID
-        WHERE reservation.reservationID = ?
+    if ($type == "wd"){
+        $stmt = $conn->prepare("
+        SELECT 
+            r.*, 
+            u.*, 
+            w.*
+        FROM reservation r
+        INNER JOIN users u ON r.userID = u.userID
+        LEFT JOIN wedding w ON r.reservationID = w.reservationID
+        WHERE r.reservationID = ?;
     ");
+    } else {
+        $stmt = $conn->prepare("
+        SELECT 
+            r.*, 
+            u.*, 
+            b.*
+        FROM reservation r
+        INNER JOIN users u ON r.userID = u.userID
+        LEFT JOIN baptism b ON r.reservationID = b.reservationID
+        WHERE r.reservationID = ?;
+    ");
+    }
+
     $stmt->bind_param("i", $reservationID);
     $stmt->execute();
     $result = $stmt->get_result();
     $data = $result->fetch_assoc();
+
+    $data["type"] = ($type === "wd") ? "Wedding" : (($type === "bt") ? "Baptism" : "Unknown");
 
     echo json_encode($data);
 } else {

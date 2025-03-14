@@ -56,36 +56,32 @@
               <td>Please Select a Record</td>
           </tr>
           <tr>
-              <td>Email</td>
+              <td>Mobile No.</td>
               <td>Please Select a Record</td>
           </tr>
           <tr>
-              <td>Mobile No.</td>
+              <td>Email Add.</td>
               <td>Please Select a Record</td>
           </tr>
           <tbody>
           </tbody>  
         </table>
-        <h4>Room Information</h4>
-        <table id="room-info" class="table table-striped">
+        <h4>Event Information</h4>
+        <table id="event-info" class="table table-striped">
           <tr>
               <th>Desc.</th>
               <th>Info.</th>
           </tr>
           <tr>
-              <td>Room Type</td>
+              <td>Event Type</td>
               <td>Please Select a Record</td>
           </tr>
           <tr>
-              <td>Date</td>
+              <td>Date Req.</td>
               <td>Please Select a Record</td>
           </tr>
           <tr>
               <td>Status</td>
-              <td>Please Select a Record</td>
-          </tr>
-          <tr>
-              <td>Price</td>
               <td>Please Select a Record</td>
           </tr>
           <tbody>
@@ -93,45 +89,26 @@
         </table>
 
         <h4>Pricing Information</h4>
-        <table id="priceBreakdown">
-        <thead>
+        <table id="event-info" class="table table-striped">
           <tr>
-            <th colspan="4" id="room-type" style="text-align: center;"></th>
+              <th>Desc.</th>
+              <th>Info.</th>
           </tr>
           <tr>
-            <th>Category</th>
-            <th>Days</th>
-            <th>Rate</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Weekday</td>
-            <td id="weekday-count"></td>
-            <td id="weekday-rate"></td>
-            <td id="weekday-subtotal"></td>
+              <td>Event Type</td>
+              <td>Please Select a Record</td>
           </tr>
           <tr>
-            <td>Weekend</td>
-            <td id="weekend-count"></td>
-            <td id="weekend-rate"></td>
-            <td id="weekend-subtotal"></td>
+              <td>Date Req.</td>
+              <td>Please Select a Record</td>
           </tr>
           <tr>
-            <td>Holiday</td>
-            <td id="holiday-count"></td>
-            <td id="holiday-rate"></td>
-            <td id="holiday-subtotal"></td>
+              <td>Status</td>
+              <td>Please Select a Record</td>
           </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3" style="text-align: right;">Est. TOTAL:</td>
-            <td id="total-price"></td>
-          </tr>
-        </tfoot>
-      </table>
+          <tbody>
+          </tbody>  
+        </table>
       </div>
     </div>
 

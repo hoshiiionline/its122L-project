@@ -20,11 +20,11 @@ function updateTable(tableSelector, data) {
     data.forEach((data) => {
         let row = document.createElement("tr");
         row.innerHTML = `
-            <td>${data.weddingID ? "Wedding" : data.baptismID ? "Baptism" : "N/A"}</td>
+            <td>${data.eventType}</td>
             <td>${data.requestedDate}</td>
             <td>${data.firstName} ${data.lastName}</td>
             <td>
-                <button class="view-event" data-id="${data.reservationID}">View</button>
+                <button class="view-event" data-id="${data.reservationID}|${data.eventType}">View</button>
             </td>
         `;
         tableBody.appendChild(row);
@@ -32,15 +32,20 @@ function updateTable(tableSelector, data) {
 
     document.querySelectorAll(".view-event").forEach((button) => {
         button.addEventListener("click", function () {
-            let reservationID = this.getAttribute("data-id");
-            fetchBookingDetails(reservationID);
+            let [reservationID, eventType] = this.getAttribute("data-id").split("|");
+            fetchBookingDetails(reservationID, eventType);
         });
     });
 }
 
 
-function fetchBookingDetails(reservationID) {
-    fetch(`../admin-api/getEvent.php?reservationID=${reservationID}`)
+function fetchBookingDetails(reservationID, eventType) {
+    if (eventType == "Wedding"){
+        eT = "wd";
+    } else {
+        eT = "bt";
+    }
+    fetch(`../admin-api/getEvent.php?reservationID=${reservationID}&type=${eT}`)
         .then((response) => response.json())
         .then((data) => {
             console.log("Reservation Details:", data);
@@ -54,21 +59,14 @@ function reloadBookings() {
         .then((res) => res.json())
         .then((data) => {
             console.log("Pending Event:", data);
-            updateTable("#pending-booking tbody", data);
+            //updateTable("#pending-booking tbody", data);
         })
         .catch((error) => console.error("Error fetching bookings:", error));
 }
 
 function displayBookingDetails(data) {
-    const detailsContainer = document.querySelector("#room-info tbody");
+    const detailsContainer = document.querySelector("#event-info tbody");
     const customerContainer = document.querySelector("#customer-info tbody");
-
-    const weekdayRate    = data.pricingRateRoom * 1;
-    const weekendRate    = data.pricingRateRoom * 1.015;
-    const weekdaySubtotal = weekdayRate * data.weekdayCount;
-    const weekendSubtotal = weekendRate * data.weekendCount;
-    const holidaySubtotal = data.pricingRateRoom * 1.02 * 0;
-    const total = weekdaySubtotal + weekendSubtotal + holidaySubtotal;
 
     if (!detailsContainer || !customerContainer) return;
 
@@ -78,30 +76,36 @@ function displayBookingDetails(data) {
             <th>Info.</th>
         </tr>
         <tr>
-            <td>Room Type</td>
-            <td>${data.roomType}</td>
+            <td>Event Type</td>
+            <td>${data.type}</td>
         </tr>
         <tr>
-            <td>Date</td>
-            <td>${data.dateReservedStart} - ${data.dateReservedEnd}</td>
+            <td>Date Req.</td>
+            <td>${data.requestedDate}</td>
         </tr>
         <tr>
             <td>Status</td>
-            <td>
-                <select id="status-select" data-id="${data.bookingID}">
-                    <option value="PENDING" ${data.status === "PENDING" ? "selected" : ""}>PENDING</option>
-                    <option value="FOR APPROVAL" ${data.status === "FOR APPROVAL" ? "selected" : ""}>FOR APPROVAL</option>
-                    <option value="APPROVED" ${data.status === "APPROVED" ? "selected" : ""}>APPROVED</option>
-                    <option value="CANCELLED" ${data.status === "CANCEL" ? "selected" : ""}>CANCELLED</option>
-                    <option value="DECLINED" ${data.status === "DECLINED" ? "selected" : ""}>DECLINED</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Price</td>
-            <td>${data.pricingRateRoom}</td>
+            <td></td>
         </tr>
     `;
+/*
+    <tr>
+    <td>Status</td>
+    <td>
+        <select id="status-select" data-id="${data.bookingID}">
+            <option value="PENDING" ${data.status === "PENDING" ? "selected" : ""}>PENDING</option>
+            <option value="FOR APPROVAL" ${data.status === "FOR APPROVAL" ? "selected" : ""}>FOR APPROVAL</option>
+            <option value="APPROVED" ${data.status === "APPROVED" ? "selected" : ""}>APPROVED</option>
+            <option value="CANCELLED" ${data.status === "CANCEL" ? "selected" : ""}>CANCELLED</option>
+            <option value="DECLINED" ${data.status === "DECLINED" ? "selected" : ""}>DECLINED</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>Price</td>
+    <td>${data.pricingRateRoom}</td>
+</tr>
+*/
 
     customerContainer.innerHTML = `
         <tr>
@@ -113,29 +117,14 @@ function displayBookingDetails(data) {
             <td>${data.firstName} ${data.lastName}</td>
         </tr>
         <tr>
-            <td>Email</td>
-            <td>${data.emailAddress}</td>
-        </tr>
-        <tr>
             <td>Mobile No.</td>
             <td>${data.mobileNo}</td>
         </tr>
+                <tr>
+            <td>Email Add.</td>
+            <td>${data.emailAddress}</td>
+        </tr>
     `;
-    
-    document.getElementById("room-type").innerText = data.roomType;
-    document.getElementById("weekday-count").innerText = data.weekdayCount;
-    document.getElementById("weekday-rate").innerText = "₱" + weekdayRate.toFixed(2);
-    document.getElementById("weekday-subtotal").innerText = "₱" + weekdaySubtotal.toFixed(2);
-    
-    document.getElementById("weekend-count").innerText = data.weekendCount;
-    document.getElementById("weekend-rate").innerText = "₱" + weekendRate.toFixed(2);
-    document.getElementById("weekend-subtotal").innerText = "₱" + weekendSubtotal.toFixed(2);
-    
-    document.getElementById("holiday-count").innerText = 0;
-    document.getElementById("holiday-rate").innerText = "₱" + (data.pricingRateRoom * 1.02).toFixed(2);
-    document.getElementById("holiday-subtotal").innerText = "₱" + holidaySubtotal.toFixed(2);
-    
-    document.getElementById("total-price").innerText = "₱" + total.toFixed(2);
 
     document.querySelector("#status-select").addEventListener("change", function () {
         let bookingID = this.getAttribute("data-id");
@@ -146,7 +135,7 @@ function displayBookingDetails(data) {
 
 
 function resetInfo(){
-    const detailsContainer = document.querySelector("#room-info tbody");
+    const detailsContainer = document.querySelector("#event-info tbody");
     const customerContainer = document.querySelector("#customer-info tbody");
 
     if (!detailsContainer || !customerContainer) return;
@@ -192,23 +181,9 @@ function resetInfo(){
             <td>Please Select a Record</td>
         </tr>
     `;
-
-    document.getElementById("room-type").innerText = "Room Type";
-    document.getElementById("weekday-count").innerText = "";
-    document.getElementById("weekday-rate").innerText = "";
-    document.getElementById("weekday-subtotal").innerText = "";
-    
-    document.getElementById("weekend-count").innerText = "";
-    document.getElementById("weekend-rate").innerText = "";
-    document.getElementById("weekend-subtotal").innerText = "";
-    
-    document.getElementById("holiday-count").innerText = "";
-    document.getElementById("holiday-rate").innerText = "";
-    document.getElementById("holiday-subtotal").innerText = "";
-    
-    document.getElementById("total-price").innerText = "";
 }
 
+/*
 function updateBookingStatus(bookingID, newStatus) {
     fetch("../admin-api/updateBooking.php", {
         method: "POST",
@@ -228,6 +203,6 @@ function updateBookingStatus(bookingID, newStatus) {
     })
     .catch((error) => console.error("Error updating booking status:", error));
 }
-
+*/
 
 reloadEvents();
