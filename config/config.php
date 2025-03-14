@@ -13,4 +13,6 @@ $conn = mysqli_connect($host, $db_username, $db_password, $database, null, '/App
 if (mysqli_connect_errno()) {  
     die('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
+
+include "../chatbot/chatbot.php";
 ?>
