@@ -58,40 +58,145 @@ nav.is-hidden {
   }
 
 /*-----------------------------------------verse of the day-----------------------------------------*/
-
-.dailyverse{
+.dailyverse {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
+    align-items: flex-start;
     text-align: left;
     min-height: 100vh;
-    background:  
-                url("../resources/bg3.jpg") no-repeat center center / cover;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3)
+    ), url("../resources/bg3.jpg") no-repeat center center / cover;
+    padding: 0 120px;
+    position: relative;
+}
+
+.dailyverse::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    z-index: 1;
+}
+
+.dailyverse h1, 
+.dailyverse h2, 
+.dailyverse #verse-content {
+    position: relative;
+    z-index: 2;
 }
 
 .dailyverse h1 {
-    font-size:110px;
-    color:rgba(255, 255, 255, 0.87);
-    margin-left:200px;  
-}
-.dailyverse h2 {
-    margin-top:-60px;
-    font-family:Figtree;
-    font-size:34px;
-    font-weight:300px;
-    color:rgba(255, 255, 255, 0.87);
-    margin-left:200px;
-
+    font-size: 90px;
+    color: #ffffff;
+    margin: 0 0 40px 0;
+    line-height: 1;
+    font-family: 'Oranienbaum', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 20px;
 }
 
+.dailyverse h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: #ffc936;
+    border-radius: 2px;
+}
 
-.dailyverse p {
-    margin-top:-10px;
-    font-size:20px;
-    color:rgba(255, 255, 255, 0.87);
-    margin-left:200px;
+.dailyverse h2, 
+#verse-content {
+    font-family: 'Figtree', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    max-width: 650px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+#verse {
+    font-size: 22px;
+    color: #ffc936;
+    margin-bottom: 20px;
+    display: block;
+    font-style: italic;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.text.eb-container {
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Figtree', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 650px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-left: 4px solid #ffc936;
+}
+
+/* Improve responsive design */
+@media (max-width: 1200px) {
+    .dailyverse {
+        padding: 0 80px;
+    }
+    
+    .dailyverse h1 {
+        font-size: 64px;
+    }
+    
+    .dailyverse h2,
+    #verse-content,
+    .text.eb-container {
+        font-size: 24px;
+        max-width: 550px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dailyverse {
+        padding: 0 40px;
+    }
+    
+    .dailyverse h1 {
+        font-size: 48px;
+    }
+    
+    .dailyverse h2,
+    #verse-content,
+    .text.eb-container {
+        font-size: 20px;
+        max-width: 100%;
+    }
+
+    .dailyverse h1::after {
+        width: 80px;
+        height: 3px;
+    }
 }
 
 .news{

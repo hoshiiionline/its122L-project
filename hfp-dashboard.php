@@ -22,6 +22,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bentham&family=Figtree:ital,wght@0,300..900;1,300..900&family=Fjalla+One&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Giga:wght@100..900&family=Oranienbaum&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     </head>
 
@@ -30,7 +31,7 @@
 
         <nav class="navbar">
             <ul class="list">
-                <li><a href="#">Home</a></li>
+                <li><a href="hfp-landing.php">Home</a></li>
                 <li><a href="#">Reservation</a></li>
                 <li><a href="#">Newsletter</a></li>
             </ul>
@@ -38,10 +39,10 @@
             
         </nav>
 
-        <div class = "dailyverse">
-            <h1>BIble Verse of the Day</h1>
-            <h2><?php include 'daily-verse.php'?></h2> <!--This heading will contain the retrieval of Bible Verse-->
-            <p>Additional text will come go here.</p>
+        <div class="dailyverse" >
+            <h1 data-aos="fade-right" data-aos-delay="100">Bible Verse of the Day</h1>
+            <h2 id="verse" data-aos="fade-right" data-aos-delay="100"></h2>
+            <div id="verse-content" data-aos="fade-up" data-aos-delay="1000"><?php include 'daily-verse.php'?></div>
         </div>
 
         <div class ="news">
@@ -75,7 +76,47 @@
             <h1>This is where the calendar will go.</h1>
             <p>Additional text will go here</p>
         </div>
-        
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+
+            // Carousel functionality
+            const carousel = document.querySelector('.carousel');
+            const images = carousel.querySelectorAll('img');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentIndex = 0;
+
+            // Create dots
+            images.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => showImage(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            function showImage(index) {
+                images.forEach(img => img.classList.remove('active'));
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentIndex = index;
+                images[currentIndex].classList.add('active');
+                dots[currentIndex].classList.add('active');
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            });
+        </script>
     </body>
 
 

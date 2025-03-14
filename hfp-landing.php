@@ -165,55 +165,71 @@
             
             <!-- REGISTER TAB -->
             <div id="Register" class="tabcontent">
-            <h3>Register</h3>
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-            <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
+                <h3>Create an Account</h3>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                        </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
+                    <div class="mb-3">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                        <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
                     </div>
-                </div>
-                <div class="mb-3">
-                <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-                </div>
-                <input type="hidden" name="form_type" value="register">
-                <input type="submit" value="Register">
-            </form>
+                    <div class="mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Create a password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+                    </div>
+                    <input type="hidden" name="form_type" value="register">
+                    <input type="submit" value="Create Account">
+                </form>
             </div>
 
-             <!-- LOGIN TAB -->
+            <!-- LOGIN TAB -->
             <div id="Login" class="tabcontent">
-            <h3>Login</h3>
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                <label for="username">Email address:</label><br>
-                <input type="text" id="emailAddress" name="emailAddress"><br>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br><br>
-                <input type="hidden" name="form_type" value="login">
-                <input type="submit" value="Login">
-            </form>
+                <h3>Welcome Back!</h3>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                    <div class="mb-3">
+                        <label for="emailAddress">Email address</label>
+                        <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                    </div>
+                    <input type="hidden" name="form_type" value="login">
+                    <input type="submit" value="Sign In">
+                </form>
             </div>
         </div>
 
         <div class="right-side">
-            This is where the content of the landing page will go.
+            <h2>Welcome to Holy Family Parish</h2>
+            <p>Join our community to stay updated with parish events and activities.</p>
+            
+            <div class="faq-container">
+                <h2>Frequently Asked Questions</h2>
+                <p>• What is the mass schedule?</p>
+                <p>• What are the parish events?</p>
+                <p>• What are the parish activities?</p>
+                <p>• What are the parish programs?</p>
+                <p>• What are the parish projects?</p>
+            </div>
+            
         </div>
-        <script>
-            function openTab(evt, tabName) {
+    </div>
+    <script>
+        function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -225,11 +241,10 @@
             }
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
-            }
+        }
 
-            // Open the default tab
-            document.getElementById("defaultOpen").click();
-            </script>
-    </div>
+        // Open the default tab
+        document.getElementById("defaultOpen").click();
+    </script>
     </body>
 </html>

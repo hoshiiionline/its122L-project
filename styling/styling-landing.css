@@ -167,6 +167,7 @@ nav.is-hidden {
 .register-container {
     height: 100vh;
     display: flex;
+    gap: 40px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -175,91 +176,161 @@ nav.is-hidden {
                 url("../resources/bg2.jpg") no-repeat center center / cover;
 }
 
-.left-side{
-    width: 25%;
-    height:250px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    max-height: 250px;
-    max-width: 50%;
-    text-align: center;
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.24);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+.left-side {
+    width: 800px;
+    height:720px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.568);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    max-height: 800px;
+    overflow-y: auto;
 }
 
+/* Tab styling */
+.tab {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
 
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color:  #1a1a1a;
-  ;
+.tablinks {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid #eee;
+}
+
+.tablinks.active {
+    color: #ffc936;
+    border-bottom: 2px solid #ffc936;
+}
+
+/* Form styling */
+.tabcontent {
+    text-align: left;
+    
+}
+
+.tabcontent h3 {
+    font-size: 30px;
+    margin-bottom: 25px;
+    color: #333;
+    font-family:'Oranienbaum', sans-serif;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.form-control:focus {
+    border-color: #ffc936;
+    box-shadow: 0 0 0 2px rgba(255, 201, 54, 0.2);
+    outline: none;
 }
 
 label {
-  display: block;
-  text-align: left;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0.5rem 0 0.2rem;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    font-family:'Lexend Giga', sans-serif;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 8px;
-  outline: none;
-  font-size: 1rem;
-}
-
-input[type="text"], input[type="password"] {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+.form-text {
+    font-size: 12px;
+    color: #666;
+    font-family:'Lexend Giga', sans-serif;
 }
 
 input[type="submit"] {
-  background: #4A90E2;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  border: none;
+    width: 100%;
+    padding: 12px;
+    background: #ffc936;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-family:'Lexend Giga', sans-serif;
 }
 
 input[type="submit"]:hover {
-  background: #357ABD;
+    background: #e6b42e;
+    transform: translateY(-1px);
 }
 
-.right-side{
-    width: 25%;
-    height:250px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    max-height: 250px;
-    max-width: 50%;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.24);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+.right-side {
+    width: 400px;
+    height:720px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.568);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.right-side p {
+    font-size: 16px;
+    margin: 12px 0;
+    color: #444;
+    font-family: 'Lexend Giga', sans-serif;
+    font-weight: 300;
+    padding-left: 10px;
+}
+
+.faq-container {
+    text-align: left;
+    margin-top: 40px;
+}
+
+.faq-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Oranienbaum', sans-serif;
+}
+
+.faq-container p {
+    font-size: 16px;
+    margin: 12px 0;
+    color: #444;
+    font-family: 'Lexend Giga', sans-serif;
+    font-weight: 300;
+    padding-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .register-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .left-side, .right-side {
+        width: 100%;
+        max-width: 400px;
+    }
 }
 
 /*--------------------------------Carousel-------------------------------------*/
