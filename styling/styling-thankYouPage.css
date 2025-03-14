@@ -24,7 +24,7 @@ body {
 }
 
 h2 {
-  color: #425d8a;
+  color: #232323;
   font-weight: 800;
   font-style: normal;
   font-size: 3em;
@@ -33,7 +33,7 @@ h2 {
 }
 
 h3 {
-  color: #6884ac;
+  color: #232323;
   font-weight: 300;
   margin-bottom: 2em;
   margin-top: 0;
@@ -72,10 +72,11 @@ a {
 .back {
   padding-left: 2vw;
   text-align: left;
-  color: #6884ac;
+  color: #232323;
+  font-weight: 400;
 }
 
 .back:hover {
-  color: #425d8a;
+  color: #ffbf1e;
   font-weight: bold;
 }
