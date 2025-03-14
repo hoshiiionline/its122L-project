@@ -9,13 +9,7 @@
 <!--  News  -->
 <!--  Latest Posts (Blog)  -->
 <!--  Church Calendar  -->  
-<?php 
-require "../config/config.php";
-if (!isset($_SESSION['userID'])) {
-    header("Location: hfp-landing.php?error=unauthorized");
-    exit;
-}
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,9 +32,9 @@ if (!isset($_SESSION['userID'])) {
         <nav class="navbar">
             <ul class="list">
                 
-                <li><a href="#"><i class="fa-solid fa-clipboard-list"></i> Reservation</a></li>
+                <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i></i> Reservation</a></li>
                 <li><a href="#"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
-                <li><a href="hfp-landing.php" onclick="return confirm('Are you sure you want to log out?');"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
+                <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
              
             
@@ -80,8 +74,9 @@ if (!isset($_SESSION['userID'])) {
         </div>
 
         <div class ="calendar">
-            <h1>This is where the calendar will go.</h1>
-            <p>Additional text will go here</p>
+            <h1>Parish Calendar</h1>
+            <p>View all upcoming events, activities, and scheduled masses.</p>
+            <div><?php include '../api/calendar-retrieval.php'?></div>
         </div>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script>
