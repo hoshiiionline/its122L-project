@@ -273,23 +273,96 @@ nav {
     transform: translateX(4px);
 }
 
+/* Update Posts Section */
 .posts {
     min-height: 100vh;
     padding: 80px 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
-                url("../resources/bg1.jpg") no-repeat center center / cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1)),
+                #ffffff;
     width: 100%;
     box-sizing: border-box;
 }
 
-.posts h1 {
+.posts-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.posts-header h1 {
     font-family: 'Oranienbaum', serif;
     font-size: clamp(36px, 6vw, 60px);
     color: var(--text-dark);
-    margin-bottom: 30px;
+    margin: 0 0 20px;
+}
+
+.posts-header p {
+    font-size: 18px;
+    color: var(--text-dark);
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.posts-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.article {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.article h2 {
+    font-family: 'Oranienbaum', serif;
+    font-size: 24px;
+    margin: 0 0 15px;
+}
+
+.article h2 a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.article h2 a:hover {
+    color: var(--primary-dark);
+}
+
+.article p {
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 15px;
+    opacity: 0.8;
+}
+
+.article small {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0;
 }
 
 /* Calendar Section */
@@ -359,6 +432,22 @@ nav {
     nav {
         padding-left: 30px;
     }
+    
+    .posts {
+        padding: 60px 20px;
+    }
+    
+    .posts-header {
+        margin-bottom: 40px;
+    }
+    
+    .article {
+        padding: 20px;
+    }
+    
+    .article h2 {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -381,6 +470,22 @@ nav {
     
     .list {
         gap: 20px;
+    }
+    
+    .posts {
+        padding: 40px 15px;
+    }
+    
+    .posts-header h1 {
+        font-size: 28px;
+    }
+    
+    .posts-header p {
+        font-size: 16px;
+    }
+    
+    .article {
+        padding: 15px;
     }
 }
 

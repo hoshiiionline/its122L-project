@@ -99,10 +99,15 @@
             </div>
         </div>
 
-        <!--<div class ="posts">
-            <h1>This is where the latest posts will go.</h1>
-            <p>Additional text will go here</p>
-        </div>-->
+        <div class="posts">
+            <div class="posts-header">
+                <h1>Catholic News Feed</h1>
+                <p>Stay updated with the latest Catholic news and stories from around the world.</p>
+            </div>
+            <div class="posts-grid">
+                <?php include '../api/news.php'; ?>
+            </div>
+        </div>
 
         <div class ="calendar">
             <h1>Parish Calendar</h1>
