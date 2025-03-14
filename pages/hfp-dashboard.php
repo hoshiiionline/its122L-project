@@ -35,7 +35,7 @@
                 <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i></i> Reservation</a></li>
                 <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
                 <li><a href="hfp-profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
-                <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
+                <li><a href="hfp-landing.php" onclick="return confirmLogout('Are you sure you want to logout?');"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
              
             
@@ -154,6 +154,10 @@
                 currentIndex = (currentIndex + 1) % images.length;
                 showImage(currentIndex);
             });
+
+            function confirmLogout(message) {
+                return confirm(message);
+            }
         </script>
     </body>
 

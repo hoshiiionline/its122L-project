@@ -20,8 +20,8 @@
             <li><a href="hfp-dashboard.php"><i class="fa-solid fa-house"></i> Dashboard</a></li>
             <li><a href="#"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
             <li><a href="hfp-profie.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
-            <li><a href="hfp-landing.php"><i class="fa-solid fa-door-open"></i> Exit</a></li>
-        </ul>
+            <li><a href="hfp-landing.php" onclick="return confirmLogout('Are you sure you want to logout?');"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
+            </ul>
     </nav>
 
     <div class="create-container">
@@ -83,6 +83,10 @@
                 }
             })
             .catch(error => console.error("Error:", error));
+        }
+
+        function confirmLogout(message) {
+                return confirm(message);
         }
     </script>
   </body>

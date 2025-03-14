@@ -78,8 +78,8 @@ $row = mysqli_fetch_assoc($result);
             <li><a href="hfp-dashboard.php"><i class="fa-solid fa-house"></i></i> Dashboard</a></li>
             <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
             <li><a href="hfp-profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
-            <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
-        </ul>
+            <li><a href="hfp-landing.php" onclick="return confirmLogout('Are you sure you want to logout?');"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
+            </ul>
     </nav>
     <div class="main-container">
         <div id="calendar"></div>
@@ -158,5 +158,9 @@ $row = mysqli_fetch_assoc($result);
         option2Fields.classList.remove('hidden');
       }
     });
+
+    function confirmLogout(message) {
+                return confirm(message);
+            }
   </script>
 </html>

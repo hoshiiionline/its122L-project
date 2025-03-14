@@ -81,8 +81,8 @@ $row = mysqli_fetch_assoc($result);
             <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i> Reservation</a></li>
             <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
            
-            <li><a href="hfp-landing.php"><i class="fa-solid fa-door-open"></i> Exit</a></li>
-        </ul>
+            <li><a href="hfp-landing.php" onclick="return confirmLogout('Are you sure you want to logout?');"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
+            </ul>
     </nav>
     <br><br>
     <div class="container">
@@ -163,6 +163,10 @@ $row = mysqli_fetch_assoc($result);
                 modal.style.display = "none";
             }
         }
+
+        function confirmLogout(message) {
+                return confirm(message);
+            }
     </script>
 </body>
 </html>

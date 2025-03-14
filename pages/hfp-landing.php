@@ -75,8 +75,10 @@
                             $_SESSION['userID'] = $row['userID'];
                             
                             if ($row['isAdmin'] == 1) {
-                                header('Location: hfp-admin.php');
+                                $_SESSION['isAdmin'] = 1;
+                                header('Location: hfp-dashboard.php');
                             } else {
+                                $_SESSION['isAdmin'] = 0;
                                 header('Location: hfp-dashboard.php');
                             }
                             exit(); // Important: prevent further execution
@@ -286,6 +288,9 @@
                 loaderWrapper.classList.add('fade-out');
             }, 2000); // Loader will show for 2 seconds
         });
+        function confirmLogout(message) {
+                return confirm(message);
+        }
     </script>
     </body>
 </html>
