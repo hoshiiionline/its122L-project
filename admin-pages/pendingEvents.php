@@ -15,7 +15,7 @@
 <!-- Add navbar -->
 <nav class="navbar">
     <ul>
-        <li><a href="../hfp-dashboard.php"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="../pages/hfp-dashboard.php"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="pendingEvents.php" class="active"><i class="fas fa-clock"></i> Pending</a></li>
         <li><a href="approvedEvents.php"><i class="fas fa-check-circle"></i> Approved</a></li>
         <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

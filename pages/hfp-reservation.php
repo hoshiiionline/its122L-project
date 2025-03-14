@@ -78,6 +78,7 @@ $row = mysqli_fetch_assoc($result);
             <li><a href="hfp-dashboard.php"><i class="fa-solid fa-house"></i></i> Dashboard</a></li>
             <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
             <li><a href="hfp-profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
+            <li><a href="../admin-pages/pendingEvents.php" class="active"><i class="fas fa-clock"></i> Events</a></li>
             <li><a href="hfp-landing.php" onclick="return confirmLogout('Are you sure you want to logout?');"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
     </nav>
