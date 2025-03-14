@@ -1,0 +1,228 @@
+:root {
+    --primary-color: #ffc936;
+    --primary-dark: #e6b42e;
+    --text-dark: #161616;
+    --text-light: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Figtree', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.732)),
+                url("../resources/bg2.jpg") no-repeat center center / cover;
+    background-attachment: fixed;
+}
+
+/* Navbar styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 130px;
+}
+
+.list {
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.list li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.list li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition);
+}
+
+.list li a:hover::after {
+    width: 100%;
+}
+
+/* Create container styles */
+.create-container {
+    max-width: 1200px;
+    margin: 120px auto 40px;
+    padding: 0 20px;
+}
+
+.create-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.create-header h1 {
+    font-family: 'Oranienbaum', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--text-light);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-posts {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.back-to-posts:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(230, 180, 46, 0.3);
+}
+
+/* Form container styles */
+.form-container {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#title-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    font-family: 'Oranienbaum', serif;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#title-input::placeholder {
+    color: #999;
+}
+
+/* EasyMDE customization */
+.EasyMDEContainer {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.editor-toolbar {
+    border: none !important;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #eee !important;
+}
+
+.CodeMirror {
+    border: none !important;
+    background: transparent !important;
+}
+
+.editor-preview-side {
+    background: var(--glass-bg) !important;
+}
+
+/* Submit button */
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 30px;
+    background: var(--primary-color);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(230, 180, 46, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav {
+        padding-left: 30px;
+    }
+    
+    .list {
+        gap: 25px;
+    }
+    
+    .create-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
+    
+    #title-input {
+        font-size: 20px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding-left: 20px;
+    }
+    
+    .list {
+        gap: 20px;
+    }
+    
+    .create-container {
+        padding: 0 15px;
+        margin-top: 100px;
+    }
+    
+    .back-to-posts {
+        padding: 10px 20px;
+    }
+} 

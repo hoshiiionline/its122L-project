@@ -1,0 +1,241 @@
+:root {
+    --primary-color: #ffc936;
+    --primary-dark: #e6b42e;
+    --text-dark: #161616;
+    --text-light: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Figtree', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #262626;
+    background-attachment: fixed;
+}
+
+/* Navbar styles (same as blog list) */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(40px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 130px;
+}
+
+.list {
+    list-style-type: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.list li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.list li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition);
+}
+
+.list li a:hover::after {
+    width: 100%;
+}
+
+/* Blog post container */
+.post-container {
+    max-width: 900px;
+    margin: 120px auto 40px;
+    padding: 40px;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+.post-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.post-title {
+    font-family: 'Oranienbaum', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.post-meta {
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+/*content */
+.post-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    font-family: 'Oranienbaum', serif;
+    color: var(--text-dark);
+    margin: 40px 0 20px;
+}
+
+.post-content h1 { font-size: 36px; }
+.post-content h2 { font-size: 32px; }
+.post-content h3 { font-size: 28px; }
+.post-content h4 { font-size: 24px; }
+
+.post-content p {
+    margin-bottom: 20px;
+}
+
+.post-content a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.post-content a:hover {
+    border-bottom-color: var(--primary-dark);
+}
+
+.post-content blockquote {
+    margin: 30px 0;
+    padding: 20px 30px;
+    border-left: 4px solid var(--primary-color);
+    background: rgba(255, 201, 54, 0.1);
+    font-style: italic;
+}
+
+.post-content code {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.post-content pre {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.post-content ul,
+.post-content ol {
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+.post-content li {
+    margin-bottom: 10px;
+}
+
+/* Back to blog link */
+.back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+    margin-top: 40px;
+}
+
+.back-to-blog:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav {
+        padding-left: 30px;
+    }
+    
+    .list {
+        gap: 25px;
+    }
+    
+    .post-container {
+        padding: 30px;
+        margin: 100px 20px 40px;
+    }
+    
+    .post-content {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding-left: 20px;
+    }
+    
+    .list {
+        gap: 20px;
+    }
+    
+    .post-container {
+        padding: 20px;
+        margin: 90px 15px 30px;
+    }
+    
+    .post-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+} 

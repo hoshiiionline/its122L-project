@@ -33,7 +33,7 @@
             <ul class="list">
                 
                 <li><a href="../pages/hfp-reservation.php"><i class="fa-solid fa-calendar-days"></i></i> Reservation</a></li>
-                <li><a href="#"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
+                <li><a href="../markdown-blog"><i class="fa-solid fa-newspaper"></i> Newsletter</a></li>
                 <li><a href="hfp-landing.php"> <i class="fa-solid fa-door-open"></i> Exit</a></li>
             </ul>
              
@@ -46,32 +46,62 @@
             <div id="verse-content" data-aos="fade-up" data-aos-delay="1000"><?php include '../api/daily-verse.php'?></div>
         </div>
 
-        <div class ="news">
-
-
-            <a href="#" style = "text-decoration: none">
-                <div class="news-left">
-                    Blog 1
-                </div>
-            </a>
-
-            <a href="#" style = "text-decoration: none">
-                <div class="news-center" >
-                    Blog 2
-                </div>
-            </a>
-
-            <a href="#" style = "text-decoration: none">
-                <div class="news-right">
-                    Blog 3
-                </div>
-            </a>
+        <div class="news">
+            <div class="news-header">
+                <h2>Here are the latest posts from the HFP Community</h2>
+                <p>Feel free to click on the posts below to read more or add your own post and share your devotions, prayers, and experiences with the community.</p>
+            </div>
+            
+            <div class="news-grid">
+                <?php 
+                    require_once '../markdown-blog/getLatestPosts.php';
+                    $latestPosts = getLatestPosts(4);
+                    
+                    if (empty($latestPosts)) {
+                        // Display placeholder cards if no posts are found
+                        for ($i = 0; $i < 3; $i++) {
+                ?>  
+                        
+                        <a href="../markdown-blog/blog-posts-list.php" class="news-card">
+                            <div class="news-content">
+                                <h3>No Posts Yet</h3>
+                                <p>Share updates and announcements with the parish community. Click here to start creating blog posts.</p>
+                                <div class="news-meta">
+                                    <span class="read-more">Create Post <i class="fa-solid fa-plus"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                <?php
+                        }
+                    } else {
+                        foreach ($latestPosts as $post) {
+                            $titleAndSummary = getFirstWords($post['markdown'], 30);
+                            $lines = explode("\n", $titleAndSummary);
+                            $title = trim(str_replace('#', '', $lines[0]));
+                            array_shift($lines);
+                            $excerpt = implode(' ', $lines);
+                ?>
+                        <a href="../markdown-blog/blog-page.php?page=<?php echo $post['slug']; ?>" class="news-card">
+                            <div class="news-content">
+                                <h3><?php echo htmlspecialchars($title); ?></h3>
+                                <p><?php echo htmlspecialchars($excerpt); ?></p>
+                                <div class="news-meta">
+                                    <span><i class="fa-regular fa-calendar"></i> <?php echo date("d M Y", $post['create_date']); ?></span>
+                                    <span class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                <?php 
+                        }
+                    }
+                ?>
+            </div>
         </div>
 
-        <div class ="posts">
+        <!--<div class ="posts">
             <h1>This is where the latest posts will go.</h1>
             <p>Additional text will go here</p>
-        </div>
+        </div>-->
 
         <div class ="calendar">
             <h1>Parish Calendar</h1>
