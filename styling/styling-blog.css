@@ -158,9 +158,16 @@ nav {
     flex-grow: 1;
 }
 
+.blog-post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure it takes full width */
+}
+
 .blog-post-link {
     display: inline-flex;
-    align-items: center;
+    align-items: right;
     gap: 2px;
     padding: 50px 20px;
     background: var(--primary-color);
@@ -182,6 +189,33 @@ nav {
 }
 
 .blog-post-link:hover i {
+    transform: translateX(4px);
+}
+
+.blog-post-edit {
+    display: inline-flex;
+    align-items: left;
+    gap: 2px;
+    padding: 50px 20px;
+    background: var(--primary-color);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+    align-self: flex-start;
+}
+
+.blog-post-edit:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.blog-post-edit i {
+    transition: var(--transition);
+}
+
+.blog-post-edit:hover i {
     transform: translateX(4px);
 }
 

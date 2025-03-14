@@ -54,7 +54,16 @@ if (!$containsPathTraversal && file_exists($page)) {
         <?php endif; ?>
 
         <div class="post-content">
-            <?php echo renderMarkdown($markdown); ?>
+            <?php 
+                $lines = explode("\n", $markdown);
+
+                if (count($lines) > 1) {
+                    array_shift($lines);
+                    $markdown = implode("\n", $lines);
+                }
+                
+                echo renderMarkdown($markdown); 
+            ?>
         </div>
 
         <?php if (!$containsPathTraversal && file_exists($page)): ?>
