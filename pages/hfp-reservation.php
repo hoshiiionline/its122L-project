@@ -28,12 +28,27 @@ $row = mysqli_fetch_assoc($result);
           selectable: true,
           initialView: 'dayGridMonth',
           events: '../api/getEvents.php',
+          height: '100%',
           dateClick: function(info) {
-            alert('Date selected: ' + info.dateStr)
             document.getElementById('schedule_date').value = info.dateStr;
           }
         });
         calendar.render();
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(this);
+          
+          fetch('', {
+            method: 'POST',
+            body: formData
+          }).then(response => {
+            if(response.ok) {
+              calendar.refetchEvents();
+              this.reset();
+            }
+          });
+        });
       });
     </script>
 </head>

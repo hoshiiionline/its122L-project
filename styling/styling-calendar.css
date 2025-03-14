@@ -31,6 +31,7 @@ body {
     padding: 20px;
     align-items: stretch;
     margin-top: 80px; /* Add space below navbar */
+    box-sizing: border-box; /* Add this */
 }
 
 /* Calendar Container */
@@ -44,6 +45,7 @@ body {
     -webkit-backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
+    min-height: 700px; /* Add minimum height */
 }
 
 /* Form Container */
@@ -132,8 +134,14 @@ button:hover {
 }
 
 .fc {
-    flex: 1;
+    flex: 1 !important;
     font-family: 'Figtree', sans-serif !important;
+    height: 100% !important; /* Force full height */
+}
+
+.fc .fc-view-harness {
+    flex: 1 !important;
+    min-height: 600px !important; /* Minimum height for calendar view */
 }
 
 .fc-toolbar-title {
