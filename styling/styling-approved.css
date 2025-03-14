@@ -7,8 +7,6 @@
     --glass-border: rgba(255, 255, 255, 0.2);
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
-    --success: #28a745;
-    --danger: #dc3545;
 }
 
 body {
@@ -23,14 +21,16 @@ body {
 
 .wrap {
     max-width: 1800px;
-    margin: 0 auto;
-    margin-top: 80px;
+    margin: 80px auto 0;
+    padding: 0 20px;
 }
 
 .row1 {
     display: flex;
+    flex-direction: column;
     gap: 20px;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 100px);
+    padding-bottom: 20px;
 }
 
 /* Container Styles */
@@ -44,19 +44,14 @@ body {
     border: 1px solid var(--glass-border);
 }
 
-.left-container {
-    flex: 7;
-}
-
 .mid-container {
-    flex: 4;
+    height: 35vh;
+    min-height: 200px;
 }
 
 .right-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: calc(55vh - 40px);
+    min-height: 400px;
 }
 
 /* Header Styles */
@@ -69,18 +64,12 @@ h2 {
     border-bottom: 2px solid var(--primary-color);
 }
 
-h4 {
-    font-family: 'Oranienbaum', serif;
-    font-size: 20px;
-    color: var(--text-dark);
-    margin: 25px 0 15px;
-}
-
 /* Table Styles */
 .table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    height: 40px;
 }
 
 .table th {
@@ -105,7 +94,7 @@ h4 {
 
 /* Scrollable Content */
 .scrollable-content {
-    height: calc(100% - 60px);
+    height: calc(100% - 50px);
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -124,70 +113,73 @@ h4 {
     border-radius: 4px;
 }
 
-/* Price Breakdown Table */
-#priceBreakdown {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
+/* Calendar Styles */
+#calendar {
+    height: calc(100% - 60px);
+    min-height: 400px;
 }
 
-#priceBreakdown th {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 12px;
-    text-align: left;
+.fc {
+    height: 100%;
+    background: transparent;
 }
 
-#priceBreakdown td {
-    padding: 12px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+.fc .fc-toolbar {
+    margin-bottom: 1.5em;
 }
 
-#priceBreakdown tfoot td {
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.05);
+.fc .fc-toolbar-title {
+    font-size: 1.2em;
+    font-family: 'Oranienbaum', serif;
 }
 
-/* Action Button */
-.btn {
-    background: var(--primary-color);
+.fc .fc-button-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: var(--text-dark);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    font-family: 'Figtree', sans-serif;
     transition: var(--transition);
 }
 
-.btn:hover {
-    background: var(--primary-dark);
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(230, 180, 46, 0.3);
+.fc .fc-button-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
 }
 
-.btn i {
-    font-size: 24px;
+.fc .fc-button-primary:disabled {
+    background-color: rgba(255, 201, 54, 0.7);
+    border-color: rgba(255, 201, 54, 0.7);
 }
 
-/* Action Buttons in Tables */
+.fc-theme-standard td, 
+.fc-theme-standard th,
+.fc-theme-standard .fc-scrollgrid {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.fc .fc-daygrid-day-number {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* Action Buttons */
 .action-btn {
-    padding: 8px 12px;
+    padding: 6px 12px;
     border: none;
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     font-size: 14px;
+    margin: 0 2px;
 }
 
-.approve-btn {
-    background: #28a745;
-    color: white;
+.view-btn {
+    background: var(--primary-color);
+    color: var(--text-dark);
 }
 
-.reject-btn {
+.cancel-btn {
     background: #dc3545;
     color: white;
 }
@@ -200,7 +192,6 @@ h4 {
 /* Responsive Design */
 @media (max-width: 1200px) {
     .row1 {
-        flex-direction: column;
         height: auto;
     }
 
@@ -208,12 +199,18 @@ h4 {
         margin-bottom: 20px;
     }
 
+    .mid-container,
     .right-container {
-        display: none;
+        height: auto;
+        min-height: 250px;
     }
 
     .scrollable-content {
-        max-height: 500px;
+        max-height: 250px;
+    }
+
+    #calendar {
+        height: 500px;
     }
 }
 
@@ -235,36 +232,30 @@ h4 {
         font-size: 24px;
     }
 
-    h4 {
-        font-size: 18px;
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .navbar {
-        padding: 10px 15px;
+    .fc .fc-toolbar-title {
+        font-size: 1.1em;
     }
 
-    .navbar ul {
-        gap: 15px;
-    }
-
-    .navbar a {
-        font-size: 14px;
-        padding: 6px 12px;
-    }
-
-    .navbar i {
-        font-size: 16px;
+    .wrap {
+        margin-top: 70px;
+        padding: 0 10px;
     }
 }
 
 @media (max-width: 576px) {
-    .navbar ul {
-        flex-wrap: wrap;
-        justify-content: center;
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .wrap {
-        margin-top: 120px;
+        margin-top: 60px;
     }
 }
 

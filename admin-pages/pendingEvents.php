@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
 <body class="background1">
+<!-- Add navbar -->
+<nav class="navbar">
+    <ul>
+        <li><a href="../hfp-dashboard.php"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="pendingEvents.php" class="active"><i class="fas fa-clock"></i> Pending</a></li>
+        <li><a href="approvedEvents.php"><i class="fas fa-check-circle"></i> Approved</a></li>
+        <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</nav>
+
 <div class="wrap">
   <div class="row1">
     <div class="col-lg-7 container left-container">
