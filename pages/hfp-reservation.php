@@ -1,6 +1,8 @@
 <?php
+ob_start();
 require "../api/submitEvent.php";
 require "../config/config.php";
+
 
 $userID = $_SESSION['userID'];
 $sql = "SELECT * FROM users WHERE userID = '$userID'";
@@ -46,6 +48,7 @@ $row = mysqli_fetch_assoc($result);
             if(response.ok) {
               calendar.refetchEvents();
               this.reset();
+              window.location.href = '../pages/hfp-thankYouPage.php';
             }
           });
         });
@@ -81,7 +84,7 @@ $row = mysqli_fetch_assoc($result);
         <div id="calendar"></div>
         <div class="form-container">
             <h2>Schedule an Event</h2>
-            <form action="hfp-reservation.php" method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <label>Last Name:</label>
                 <input type="text" name="lastname" value=<?php echo $row['lastName']?> readonly>
 
@@ -135,7 +138,7 @@ $row = mysqli_fetch_assoc($result);
 
         <label for="notes">Notes:</label>
         <textarea style="resize: none;" name="notes" rows="4" cols="50" placeholder="Any additional details..."></textarea>
-        <button type="submit">Submit</button>
+        <button type="submit" >Submit</button>
     </form>
 </body>
 
