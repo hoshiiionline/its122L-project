@@ -51,6 +51,23 @@ $row = mysqli_fetch_assoc($result);
         });
       });
     </script>
+    <style>
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        label {
+          font-weight: bold;
+        }
+        input, select, button {
+          padding: 8px;
+          font-size: 16px;
+        }
+        .hidden {
+          display: none;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -64,21 +81,18 @@ $row = mysqli_fetch_assoc($result);
         <div id="calendar"></div>
         <div class="form-container">
             <h2>Schedule an Event</h2>
-            <form action="" method="POST">
+            <form action="hfp-reservation.php" method="POST">
                 <label>Last Name:</label>
-                <input type="text" name="lastname" required>
+                <input type="text" name="lastname" value=<?php echo $row['lastName']?> readonly>
 
                 <label>First Name:</label>
-                <input type="text" name="firstname" required>
+                <input type="text" name="firstname" value=<?php echo $row['firstName']?> readonly>
 
-                <label>Email:</label>
-                <input type="email" name="email" required>
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="johndoe@example.com" value=<?php echo $row['emailAddress']?> readonly>
 
-                <label>Contact Number:</label>
-                <input type="tel" name="contact_number" required>
-
-                <label>Purpose:</label>
-                <input type="text" name="purpose" required>
+        <label>Contact Number:</label>
+        <input type="tel" name="contact_number" placeholder="9123456789" value=<?php echo $row['mobileNumber']?> readonly>
 
                 <label>Schedule Date:</label>
                 <input type="date" name="schedule_date" id="schedule_date" readonly>
@@ -89,9 +103,56 @@ $row = mysqli_fetch_assoc($result);
                     <option value="PM">PM</option>
                 </select>
 
-                <button type="submit">Submit</button>
-            </form>
+        <label for="purpose">Purpose:</label>
+        <select name="purpose" id="event" required>
+            <option value="default">Please select an event...</option>
+            <option value="Baptism">Baptism</option>
+            <option value="Wedding">Wedding</option>
+            <option value="Others">Others</option>
+        </select>
+
+        <div id="baptismFields" class="hidden">
+            <label for="childName">Child's Name:</label>
+            <input type="text" name="childName" >
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="date" name="dateOfBirth">
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" name="fatherName">
+            <label for="motherName">Mother's Name:</label>
+            <input type="text" name="motherName">
+            <label for="godParentsNo">Number of Godparents:</label>
+            <input type="number" name="godParentsNo">
+        </div> 
+        
+        <div id="weddingFields" class="hidden">
+            <label>Groom's Name:</label>
+            <input type="text" name="groomName">
+            <label>Bride's Name:</label>
+            <input type="text" name="brideName">
+            <label>Number of Guests:</label>
+            <input type="number" name="guestsNo">
         </div>
-    </div>
+
+        <label for="notes">Notes:</label>
+        <textarea style="resize: none;" name="notes" rows="4" cols="50" placeholder="Any additional details..."></textarea>
+        <button type="submit">Submit</button>
+    </form>
 </body>
+
+<script>
+    const comboBox = document.getElementById('event');
+    const option1Fields = document.getElementById('baptismFields');
+    const option2Fields = document.getElementById('weddingFields');
+
+    comboBox.addEventListener('change', function() {
+      option1Fields.classList.add('hidden');
+      option2Fields.classList.add('hidden');
+
+      if (this.value === 'Baptism') {
+        option1Fields.classList.remove('hidden');
+      } else if (this.value === 'Wedding') {
+        option2Fields.classList.remove('hidden');
+      }
+    });
+  </script>
 </html>

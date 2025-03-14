@@ -197,10 +197,16 @@
                             <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                         <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="mobileNumber">Mobile number:</label>
+                        <input type="mobileNumber" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="(e.g. 9123456789)" required>
+                    </div>
                     </div>
                     <div class="mb-3">
                         <label for="password">Password</label>
