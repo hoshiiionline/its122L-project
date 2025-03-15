@@ -29,7 +29,7 @@ $isAdmin = $_SESSION['isAdmin'];
             <h1 class="blog-heading">Parish Blog Posts</h1>
             <?php 
                 if($isAdmin == 1) {
-                echo '            <a href="../pages/hfp-blogs.php" class="create-post-btn">
+                echo '            <a href="../admin-pages/createBlog.php" class="create-post-btn">
                 <i class="fa-solid fa-plus"></i> Create New Post
             </a>';
                 }
