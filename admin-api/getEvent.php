@@ -15,24 +15,40 @@ if ($reservationID) {
     if ($type == "wd"){
         $stmt = $conn->prepare("
         SELECT 
-            r.*, 
-            u.*, 
-            w.*
-        FROM reservation r
-        INNER JOIN users u ON r.userID = u.userID
-        LEFT JOIN wedding w ON r.reservationID = w.reservationID
-        WHERE r.reservationID = ?;
+            reservation.reservationID, 
+            reservation.status,
+            reservation.requestedDate, 
+            users.emailAddress,
+            users.mobileNumber,
+            users.firstName, 
+            users.lastName, 
+            'Wedding' AS eventType, 
+            wedding.weddingID AS eventID, 
+            wedding.groomName, wedding.brideName, wedding.guestsNo, 
+            NULL AS childName, NULL AS dateOfBirth, NULL AS motherName, NULL AS fatherName, NULL AS godparentsNo
+        FROM reservation
+        INNER JOIN users ON reservation.userID = users.userID
+        INNER JOIN wedding ON reservation.reservationID = wedding.reservationID
+        WHERE reservation.reservationID = ?
     ");
     } else {
         $stmt = $conn->prepare("
         SELECT 
-            r.*, 
-            u.*, 
-            b.*
-        FROM reservation r
-        INNER JOIN users u ON r.userID = u.userID
-        LEFT JOIN baptism b ON r.reservationID = b.reservationID
-        WHERE r.reservationID = ?;
+            reservation.reservationID, 
+            reservation.status,
+            reservation.requestedDate, 
+            users.emailAddress,
+            users.mobileNumber,
+            users.firstName, 
+            users.lastName, 
+            'Baptism' AS eventType, 
+            baptism.baptismID AS eventID, 
+            NULL AS groomName, NULL AS brideName, NULL AS guestsNo, 
+            baptism.childName, baptism.dateOfBirth, baptism.motherName, baptism.fatherName, baptism.godparentsNo
+        FROM reservation
+        INNER JOIN users ON reservation.userID = users.userID
+        INNER JOIN baptism ON reservation.reservationID = baptism.reservationID
+        WHERE reservation.reservationID = ?
     ");
     }
 

@@ -73,8 +73,7 @@ function displayBookingDetails(data) {
   const customerContainer = document.querySelector("#customer-info tbody");
 
   if (!detailsContainer || !customerContainer) return;
-
-  detailsContainer.innerHTML = `
+  let eventDetailsHTML = `
         <tr>
             <th>Desc.</th>
             <th>Info.</th>
@@ -102,9 +101,59 @@ function displayBookingDetails(data) {
                 }>CANCELLED</option>
                 </select>
             </td>
-            
         </tr>
     `;
+
+    if (data.type === "Wedding") {
+        eventDetailsHTML += `
+            <tr>
+                <th colspan="2">Wedding Details</th>
+            </tr>
+            <tr>
+                <td>Groom Name</td>
+                <td>${data.groomName}</td>
+            </tr>
+            <tr>
+                <td>Bride Name</td>
+                <td>${data.brideName}</td>
+            </tr>
+            <tr>
+                <td>Guests</td>
+                <td>${data.guestsNo}</td>
+            </tr>
+        `;
+      } else if (data.type === "Baptism") {
+        eventDetailsHTML += `
+            <tr>
+                <th colspan="2">Wedding Details</th>
+            </tr>
+            <tr>
+                <td>Child Name</td>
+                <td>${data.childName}</td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td>${data.dateOfBirth}</td>
+            </tr>
+            <tr>
+                <td>Mother's Name</td>
+                <td>${data.motherName}</td>
+            </tr>
+            <tr>
+                <td>Father's Name</td>
+                <td>${data.fatherName}</td>
+            </tr>
+            <tr>
+                <td>Godparents</td>
+                <td>${data.godparentsNo}</td>
+            </tr>
+                <td>Guests</td>
+                <td>${data.guestsNo}</td>
+            </tr>
+        `;
+      }
+
+      detailsContainer.innerHTML = eventDetailsHTML;
 
   customerContainer.innerHTML = `
         <tr>
