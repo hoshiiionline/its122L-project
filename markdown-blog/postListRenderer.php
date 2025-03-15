@@ -25,10 +25,10 @@
                     <a href="../admin-pages/editBlog.php?file=<?php echo urlencode($post["slug"]); ?>" class="blog-post-link">
                         Edit Post <i class="fa-solid fa-pen"></i>
                     </a>
-                    <a href="<?php echo $post['slug'] ?>" class="blog-post-link">
-                        Read More <i class="fa-solid fa-arrow-right"></i>
-                    </a>
                 <?php endif; ?>
+                <a href="<?php echo $post['slug'] ?>" class="blog-post-link">
+                        Read More <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </div>
