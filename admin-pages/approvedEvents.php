@@ -29,7 +29,7 @@
     <div class="container mid-container">
       <h2>Approved Bookings</h2>
       <div class="scrollable-content">
-        <table id="approved-booking" class="table table-striped">
+        <table id="approved-event" class="table table-striped">
           <thead>
             <tr>
               <th>Event Type</th>

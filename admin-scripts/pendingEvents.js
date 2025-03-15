@@ -3,7 +3,7 @@ function reloadEvents() {
     .then((res) => res.json())
     .then((data) => {
       console.log("Pending Events:", data);
-      updateTable("#pending-booking tbody", data);
+      updateTable("#pending-event tbody", data);
     })
     .catch((error) => console.error("Error fetching bookings:", error));
 }
@@ -63,7 +63,7 @@ function reloadBookings() {
     .then((res) => res.json())
     .then((data) => {
       console.log("Pending Event:", data);
-      //updateTable("#pending-booking tbody", data);
+      //updateTable("#pending-event tbody", data);
     })
     .catch((error) => console.error("Error fetching bookings:", error));
 }
@@ -145,19 +145,15 @@ function resetInfo() {
             <th>Info.</th>
         </tr>
         <tr>
-            <td>Room Type</td>
+            <td>Event Type</td>
             <td>Please Select a Record</td>
         </tr>
         <tr>
-            <td>Date</td>
+            <td>Date Req.</td>
             <td>Please Select a Record</td>
         </tr>
         <tr>
             <td>Status</td>
-            <td>Please Select a Record</td>
-        </tr>
-        <tr>
-            <td>Price</td>
             <td>Please Select a Record</td>
         </tr>
     `;
@@ -172,11 +168,11 @@ function resetInfo() {
             <td>Please Select a Record</td>
         </tr>
         <tr>
-            <td>Email</td>
+            <td>Mobile No.</td>
             <td>Please Select a Record</td>
         </tr>
         <tr>
-            <td>Mobile No.</td>
+            <td>Email Add.</td>
             <td>Please Select a Record</td>
         </tr>
     `;
@@ -193,7 +189,7 @@ function updateReservationStatus(reservationID, newStatus) {
         console.log("Update Response:", data);
         if (data.success) {
             alert("Reservation status updated successfully!");
-            reloadBookings();
+            reloadEvents();
             resetInfo();
         } else {
             alert("Failed to update status: " + data.error);

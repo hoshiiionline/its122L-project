@@ -14,7 +14,7 @@ function reloadEvents() {
         .then((res) => res.json())
         .then((data) => {
             console.log("Approved Events:", data);
-            updateTable("#approved-booking tbody", data);
+            updateTable("#approved-event tbody", data);
         })
         .catch((error) => console.error("Error fetching bookings:", error));
 }

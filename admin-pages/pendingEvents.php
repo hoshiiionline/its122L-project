@@ -27,7 +27,7 @@
     <div class="col-lg-7 container left-container">
       <h2>Pending Bookings</h2>
       <div class="scrollable-content">
-        <table id="pending-booking" class="table table-striped">
+        <table id="pending-event" class="table table-striped">
           <thead>
             <tr>
               <th>Event Type</th>
