@@ -6,30 +6,27 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 include_once "../config/config.php";
 
-// Get JSON data from request
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (!isset($data["bookingID"]) || !isset($data["status"])) {
+if (!isset($data["reservationID"]) || !isset($data["status"])) {
     echo json_encode(["success" => false, "error" => "Missing parameters"]);
     exit;
 }
 
-$bookingID = $data["bookingID"];
+$reservationID = $data["reservationID"];
 $status = $data["status"];
 
-// Ensure status is valid
-$validStatuses = ["PENDING", "APPROVED", "CANCELLED"];
+$validStatuses = ["PENDING", "CONFIRMED", "CANCELLED"];
 if (!in_array($status, $validStatuses)) {
     echo json_encode(["success" => false, "error" => "Invalid status"]);
     exit;
 }
 
-// Update the booking status
-$stmt = $conn->prepare("UPDATE booking SET status = ? WHERE bookingID = ?");
-$stmt->bind_param("si", $status, $bookingID);
+$stmt = $conn->prepare("UPDATE reservation SET status = ? WHERE reservationID = ?");
+$stmt->bind_param("si", $status, $reservationID);
 
 if ($stmt->execute()) {
-    echo json_encode(["success" => true]);
+    echo json_encode(["success" => true, "query" => "UPDATE reservation SET status = ". $reservationID." WHERE reservationID = ". $status]);
 } else {
     echo json_encode(["success" => false, "error" => $stmt->error]);
 }

@@ -32,11 +32,9 @@
         <table id="approved-booking" class="table table-striped">
           <thead>
             <tr>
-              <th>Room</th>
-              <th>Occ. Type</th>
-              <th>Dates</th>
+              <th>Event Type</th>
+              <th>Req. Date</th>
               <th>Client</th>
-              <th>Price</th>
               <th>Action</th>
             </tr>
           </thead>

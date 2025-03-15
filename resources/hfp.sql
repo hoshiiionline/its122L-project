@@ -16,7 +16,7 @@ CREATE TABLE `reservation` (
     `reservationID` INT(15) NOT NULL AUTO_INCREMENT,
     `referenceNo` VARCHAR(50) NOT NULL,
     `userID` INT(11) NOT NULL,
-    `status` VARCHAR(50) NOT NULL,
+    `status` ENUM('PENDING', 'CONFIRMED', 'CANCELLED') NOT NULL,
     `requestedDate` DATE NOT NULL,
     `notes` TEXT,
     `isPaid` BOOLEAN NOT NULL DEFAULT FALSE,
@@ -64,22 +64,4 @@ CREATE TABLE `assignment` (
     PRIMARY KEY (`assignmentID`),
     CONSTRAINT `fk_assignment_reservation` FOREIGN KEY (`reservationID`) REFERENCES `reservation`(`reservationID`),
     CONSTRAINT `fk_assignment_priest` FOREIGN KEY (`priestID`) REFERENCES `priest`(`priestID`)
-);
-
-CREATE TABLE confirmedEvents (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    allDay TINYINT(1) NOT NULL DEFAULT 0,
-    start DATETIME NOT NULL,
-    end DATETIME DEFAULT NULL
-);
-
-CREATE TABLE pendingEvents (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    purpose VARCHAR(255) NOT NULL,
-    lastname VARCHAR(100) NOT NULL,
-    firstname VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    contact_number VARCHAR(20) NOT NULL,
-    schedule DATETIME NOT NULL
 );

@@ -9,17 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
   });
 
-function reloadBookings() {
-    fetch("../admin-api/approvedBooking.php")
+function reloadEvents() {
+    fetch("../admin-api/approvedEvents.php")
         .then((res) => res.json())
-        .then((approvedBookings) => {
-            console.log("Approved Bookings:", approvedBookings);
-            updateTable("#approved-booking tbody", approvedBookings);
+        .then((data) => {
+            console.log("Approved Events:", data);
+            updateTable("#approved-booking tbody", data);
         })
         .catch((error) => console.error("Error fetching bookings:", error));
 }
-/*
-function updateTable(tableSelector, bookings) {
+
+function updateTable(tableSelector, events) {
     const tableBody = document.querySelector(tableSelector);
     if (!tableBody) {
         console.error(`Table with selector '${tableSelector}' not found.`);
@@ -28,54 +28,45 @@ function updateTable(tableSelector, bookings) {
 
     tableBody.innerHTML = "";
 
-    bookings.forEach((room) => {
+    events.forEach((data) => {
         let row = document.createElement("tr");
         row.innerHTML = `
-            <td>${room.roomType}</td>
-            <td>${room.occupancyType}</td>
-            <td>${room.dateReservedStart} - ${room.dateReservedEnd}</td>
-            <td title="Email: ${room.emailAddress} | Contact: ${room.mobileNo}">
-                ${room.firstName} ${room.lastName}
-            </td>
-            <td>${room.pricingRateRoom}</td>
+            <td>${data.eventType}</td>
+            <td>${data.requestedDate}</td>
+            <td>${data.firstName} ${data.lastName}</td>
             <td>
-                <select class="status-select" data-id="${room.bookingID}">
-                    <option value="PENDING" ${room.status === "PENDING" ? "selected" : ""}>PENDING</option>
-                    <option value="FOR APPROVAL" ${room.status === "FOR APPROVAL" ? "selected" : ""}>FOR APPROVAL</option>
-                    <option value="APPROVED" ${room.status === "APPROVED" ? "selected" : ""}>APPROVED</option>
-                    <option value="CANCELLED" ${room.status === "CANCEL" ? "selected" : ""}>CANCELLED</option>
-                    <option value="DECLINED" ${room.status === "DECLINED" ? "selected" : ""}>DECLINED</option>
+                <select class="status-select" data-id="${data.reservationID}">
+                    <option value="PENDING" ${data.status === "PENDING" ? "selected" : ""}>PENDING</option>
+                    <option value="CONFIRMED" ${data.status === "CONFIRMED" ? "selected" : ""}>CONFIRMED</option>
+                    <option value="CANCELLED" ${data.status === "CANCELLED" ? "selected" : ""}>CANCELLED</option>
                 </select>
             </td>
         `;
         tableBody.appendChild(row);
     });
 
-    document.querySelectorAll(".status-select").forEach((dropdown) => {
-        let newDropdown = dropdown.cloneNode(true);
-        dropdown.replaceWith(newDropdown);
-
-        newDropdown.addEventListener("change", function () {
-            let bookingID = this.getAttribute("data-id");
+    document.querySelectorAll(".status-select").forEach((select) => {
+        select.addEventListener("change", function () {
+            let reservationID = this.getAttribute("data-id");
             let newStatus = this.value;
-            updateBookingStatus(bookingID, newStatus);
+            updateReservationStatus(reservationID, newStatus);
         });
     });
 }
 
-function updateBookingStatus(bookingID, newStatus) {
-    fetch("../admin-api/updateBooking.php", {
+
+function updateReservationStatus(reservationID, newStatus) {
+    fetch("../admin-api/updateStatus.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookingID: bookingID, status: newStatus }),
+        body: JSON.stringify({ reservationID: reservationID, status: newStatus }),
     })
     .then((response) => response.json())
     .then((data) => {
         console.log("Update Response:", data);
         if (data.success) {
-            alert("Booking status updated successfully!");
-            reloadBookings();
-            calendar.refetchEvents();
+            alert("Reservation status updated successfully!");
+            reloadEvents();
         } else {
             alert("Failed to update status: " + data.error);
         }
@@ -83,5 +74,4 @@ function updateBookingStatus(bookingID, newStatus) {
     .catch((error) => console.error("Error updating booking status:", error));
 }
 
-reloadBookings();
-*/
+reloadEvents();

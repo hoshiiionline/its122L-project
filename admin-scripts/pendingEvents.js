@@ -9,6 +9,9 @@ function reloadEvents() {
 }
 
 function updateTable(tableSelector, data) {
+    console.log("Received data:", data);
+
+
   const tableBody = document.querySelector(tableSelector);
   if (!tableBody) {
     console.error(`Table with selector '${tableSelector}' not found.`);
@@ -87,45 +90,21 @@ function displayBookingDetails(data) {
         <tr>
             <td>Status</td>
             <td>
-                <select id="status-select" data-id="${data.bookingID}">
+                <select id="status-select" data-id="${data.reservationID}">
                 <option value="PENDING" ${
                   data.status === "PENDING" ? "selected" : ""
                 }>PENDING</option>
-                <option value="FOR APPROVAL" ${
-                  data.status === "FOR APPROVAL" ? "selected" : ""
-                }>FOR APPROVAL</option>
-                <option value="APPROVED" ${
-                  data.status === "APPROVED" ? "selected" : ""
-                }>APPROVED</option>
+                <option value="CONFIRMED" ${
+                  data.status === "CONFIRMED" ? "selected" : ""
+                }>CONFIRMED</option>
                 <option value="CANCELLED" ${
                   data.status === "CANCEL" ? "selected" : ""
                 }>CANCELLED</option>
-                <option value="DECLINED" ${
-                  data.status === "DECLINED" ? "selected" : ""
-                }>DECLINED</option>
                 </select>
             </td>
             
         </tr>
     `;
-  /*
-    <tr>
-    <td>Status</td>
-    <td>
-        <select id="status-select" data-id="${data.bookingID}">
-            <option value="PENDING" ${data.status === "PENDING" ? "selected" : ""}>PENDING</option>
-            <option value="FOR APPROVAL" ${data.status === "FOR APPROVAL" ? "selected" : ""}>FOR APPROVAL</option>
-            <option value="APPROVED" ${data.status === "APPROVED" ? "selected" : ""}>APPROVED</option>
-            <option value="CANCELLED" ${data.status === "CANCEL" ? "selected" : ""}>CANCELLED</option>
-            <option value="DECLINED" ${data.status === "DECLINED" ? "selected" : ""}>DECLINED</option>
-        </select>
-    </td>
-</tr>
-<tr>
-    <td>Price</td>
-    <td>${data.pricingRateRoom}</td>
-</tr>
-*/
 
   customerContainer.innerHTML = `
         <tr>
@@ -149,9 +128,8 @@ function displayBookingDetails(data) {
   document
     .querySelector("#status-select")
     .addEventListener("change", function () {
-      let bookingID = this.getAttribute("data-id");
       let newStatus = this.value;
-      updateBookingStatus(bookingID, newStatus);
+      updateReservationStatus(data.reservationID, newStatus);
     });
 }
 
@@ -204,18 +182,17 @@ function resetInfo() {
     `;
 }
 
-/*
-function updateBookingStatus(bookingID, newStatus) {
-    fetch("../admin-api/updateBooking.php", {
+function updateReservationStatus(reservationID, newStatus) {
+    fetch("../admin-api/updateStatus.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookingID: bookingID, status: newStatus }),
+        body: JSON.stringify({ reservationID: reservationID, status: newStatus }),
     })
     .then((response) => response.json())
     .then((data) => {
         console.log("Update Response:", data);
         if (data.success) {
-            alert("Booking status updated successfully!");
+            alert("Reservation status updated successfully!");
             reloadBookings();
             resetInfo();
         } else {
@@ -224,6 +201,5 @@ function updateBookingStatus(bookingID, newStatus) {
     })
     .catch((error) => console.error("Error updating booking status:", error));
 }
-*/
 
 reloadEvents();

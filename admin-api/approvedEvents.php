@@ -9,8 +9,10 @@ if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
 include_once "../config/config.php";
 
 $stmt = $conn->prepare("
+SELECT * FROM (
     SELECT 
         reservation.reservationID, 
+        reservation.status,
         reservation.requestedDate, 
         users.firstName, 
         users.lastName, 
@@ -26,6 +28,7 @@ $stmt = $conn->prepare("
 
     SELECT 
         reservation.reservationID, 
+        reservation.status,
         reservation.requestedDate, 
         users.firstName, 
         users.lastName, 
@@ -36,8 +39,10 @@ $stmt = $conn->prepare("
     FROM reservation
     INNER JOIN users ON reservation.userID = users.userID
     INNER JOIN baptism ON reservation.reservationID = baptism.reservationID
+) AS all_reservations
 
-    ORDER BY 2 ASC;
+WHERE status = 'CONFIRMED'
+ORDER BY requestedDate ASC;
 ");
 
 $stmt->execute();
