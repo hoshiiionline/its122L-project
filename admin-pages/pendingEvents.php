@@ -88,27 +88,6 @@
           </tbody>  
         </table>
 
-        <h4>Pricing Information</h4>
-        <table id="event-info" class="table table-striped">
-          <tr>
-              <th>Desc.</th>
-              <th>Info.</th>
-          </tr>
-          <tr>
-              <td>Event Type</td>
-              <td>Please Select a Record</td>
-          </tr>
-          <tr>
-              <td>Date Req.</td>
-              <td>Please Select a Record</td>
-          </tr>
-          <tr>
-              <td>Status</td>
-              <td>Please Select a Record</td>
-          </tr>
-          <tbody>
-          </tbody>  
-        </table>
       </div>
     </div>
 
